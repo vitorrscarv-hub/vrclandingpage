@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VRC — Página de vendas completa pelo preço de uma landing simples</title>
+<meta name="description" content="Desenvolvo do zero uma página de vendas completa de sete seções por R$ 997, no ar em 7 dias úteis. Texto, layout, domínio e rastreamento inclusos.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="VRC — Páginas que transformam">
+<meta property="og:description" content="Página de vendas completa pelo preço de uma landing simples. R$ 997, sete dias úteis.">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --fundo:#120A18;
+  --superficie:#1C1024;
+  --superficie-alta:#241430;
+  --linha:rgba(245,233,242,.09);
+  --linha-forte:rgba(245,233,242,.16);
+  --laranja:#FF4D2E;
+  --magenta:#D62BC4;
+  --amarelo:#FFCE45;
+  --texto:#F5E9F2;
+  --apoio:#B49BB8;
+
+  --display:'Bricolage Grotesque', system-ui, sans-serif;
+  --corpo:'Figtree', system-ui, -apple-system, sans-serif;
+
+  --gutter:20px;
+  --largura:1080px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  font-family:var(--corpo);
+  background:var(--fundo);
+  color:var(--texto);
+  line-height:1.6;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{max-width:100%;display:block}
+a{color:inherit}
+
+:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px;border-radius:4px}
+
+.container{
+  width:100%;max-width:var(--largura);
+  margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter);
+}
+
+.faixa{padding:72px 0}
+.faixa--alta{padding:96px 0}
+.faixa--fundo{background:var(--superficie)}
+
+/* ---------- tipografia ---------- */
+.eyebrow{
+  font-family:var(--corpo);
+  font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--magenta);
+  margin-bottom:18px;
+}
+.eyebrow--apoio{color:var(--apoio)}
+
+h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-weight:800}
+
+.h-secao{
+  font-size:clamp(26px,5.4vw,38px);
+  margin-bottom:14px;
+}
+.sub-secao{
+  color:var(--apoio);font-size:16px;max-width:56ch;margin-bottom:38px;
+}
+
+/* ---------- topo / lockup ---------- */
+.topo{padding:26px 0 0}
+.lockup{display:inline-flex;flex-direction:column;gap:1px;text-decoration:none}
+.lockup .sigla{
+  font-family:var(--display);font-weight:800;font-size:26px;
+  letter-spacing:-.02em;line-height:1;
+}
+.lockup .slogan{
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--apoio);font-weight:500;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 84px;position:relative}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(60% 42% at 12% 0%, rgba(214,43,196,.13), transparent 70%),
+    radial-gradient(52% 38% at 92% 14%, rgba(255,77,46,.10), transparent 72%);
+}
+.hero .container{position:relative}
+.hero-grid{display:grid;gap:52px}
+
+.hero h1{
+  font-size:clamp(34px,7.6vw,60px);
+  margin-bottom:20px;max-width:16ch;
+}
+.hero h1 em{font-style:normal;color:var(--laranja)}
+.hero .sub{
+  font-size:clamp(16px,2.2vw,19px);
+  color:var(--apoio);max-width:52ch;margin-bottom:32px;
+}
+.hero .sub strong{color:var(--texto);font-weight:600}
+
+.micro{font-size:13px;color:var(--apoio);margin-top:14px}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:16px 28px;border-radius:10px;
+  font-family:var(--corpo);font-weight:600;font-size:16px;
+  text-decoration:none;border:1px solid transparent;
+  transition:transform .18s ease, opacity .18s ease;
+}
+.btn--principal{
+  background:linear-gradient(94deg,var(--laranja),var(--magenta));
+  color:#fff;
+}
+.btn--principal:hover{transform:translateY(-2px)}
+.btn--contorno{
+  background:transparent;color:var(--texto);border-color:var(--linha-forte);
+}
+.btn--contorno:hover{border-color:var(--apoio)}
+.btn--largo{width:100%}
+.btn svg{flex:none}
+
+/* ---------- selo do hero ---------- */
+.selo{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--superficie-alta);border:1px solid var(--linha);
+  border-radius:999px;padding:8px 16px 8px 12px;
+  font-size:13px;color:var(--apoio);margin-bottom:24px;
+}
+.selo b{color:var(--texto);font-weight:600}
+.ponto{
+  width:7px;height:7px;border-radius:50%;background:var(--amarelo);flex:none;
+}
+
+/* ---------- cards de dor ---------- */
+.cards{display:grid;gap:16px}
+.card{
+  background:var(--superficie-alta);
+  border:1px solid var(--linha);
+  border-radius:16px;padding:26px 22px;
+}
+.card h3{
+  font-size:19px;font-weight:600;letter-spacing:-.02em;
+  margin-bottom:10px;line-height:1.25;
+}
+.card p{color:var(--apoio);font-size:15px}
+
+/* ---------- listas de escopo ---------- */
+.escopo{display:grid;gap:18px;margin-bottom:34px}
+.painel{
+  background:var(--superficie-alta);border:1px solid var(--linha);
+  border-radius:16px;padding:26px 22px;
+}
+.painel--fora{background:transparent;border-style:dashed}
+.painel h3{
+  font-size:15px;font-weight:600;letter-spacing:.02em;
+  margin-bottom:18px;text-transform:none;
+}
+.lista{list-style:none;display:grid;gap:13px}
+.lista li{
+  display:grid;grid-template-columns:20px 1fr;gap:11px;
+  font-size:15px;line-height:1.5;
+}
+.lista .marca{
+  font-family:var(--display);font-weight:800;font-size:14px;line-height:1.5;
+}
+.lista--dentro .marca{color:var(--laranja)}
+.lista--fora{color:var(--apoio)}
+.lista--fora .marca{color:var(--apoio)}
+.painel--fora .nota-fora{
+  font-size:13px;color:var(--apoio);margin-bottom:16px;
+}
+
+/* ---------- tabela comparativa ---------- */
+.tabela-wrap{border:1px solid var(--linha);border-radius:16px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{
+  font-family:var(--display);font-weight:600;font-size:13px;
+  text-align:left;padding:16px 14px;
+  background:var(--superficie-alta);
+  border-bottom:1px solid var(--linha);
+  letter-spacing:-.01em;
+}
+thead th:first-child{color:var(--apoio);font-weight:500}
+thead th:last-child{color:var(--laranja)}
+tbody td{padding:14px;border-bottom:1px solid var(--linha);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody td:first-child{color:var(--apoio);width:34%}
+tbody td:nth-child(2){color:var(--apoio)}
+tbody td:last-child{color:var(--texto);font-weight:500}
+
+/* ---------- prova visual lado a lado ---------- */
+.dupla{display:grid;gap:16px;margin-top:32px}
+.moldura{
+  border:1px solid var(--linha);border-radius:14px;overflow:hidden;
+  background:var(--superficie-alta);
+}
+.moldura .barra{
+  display:flex;gap:5px;padding:11px 14px;border-bottom:1px solid var(--linha);
+}
+.moldura .barra i{width:8px;height:8px;border-radius:50%;background:var(--linha-forte)}
+.moldura .tela{
+  aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:22px;color:var(--apoio);font-size:13px;
+  background:
+    repeating-linear-gradient(45deg,rgba(245,233,242,.028) 0 12px,transparent 12px 24px);
+}
+.moldura figcaption{
+  padding:14px;border-top:1px solid var(--linha);
+  font-size:13px;color:var(--apoio);
+}
+.moldura figcaption b{color:var(--texto);font-weight:600;display:block;margin-bottom:2px}
+.legenda-dupla{
+  text-align:center;font-size:14px;color:var(--apoio);margin-top:18px;
+}
+.legenda-dupla b{color:var(--texto);font-weight:600}
+
+/* ---------- bloco de preço (assinatura) ---------- */
+.preco-bloco{
+  background:var(--superficie-alta);
+  border:1px solid var(--linha-forte);
+  border-radius:22px;padding:34px 22px;
+  max-width:560px;margin:0 auto;
+}
+.precos{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:10px;
+}
+.col{text-align:center}
+.col .rot{
+  font-size:11px;color:var(--apoio);text-transform:uppercase;
+  letter-spacing:.09em;margin-bottom:10px;min-height:32px;line-height:1.35;
+}
+.valor{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1}
+.riscado .valor{
+  font-size:clamp(26px,7vw,34px);color:var(--apoio);
+  position:relative;display:inline-block;
+}
+.riscado .valor::after{
+  content:"";position:absolute;left:-7%;right:-7%;top:52%;height:3px;
+  background:var(--laranja);transform:rotate(-8deg);border-radius:2px;
+}
+.seta{font-size:20px;color:var(--laranja);padding-top:30px}
+.atual .rot{color:var(--amarelo);font-weight:600}
+.atual .valor{font-size:clamp(40px,11vw,54px);color:var(--texto)}
+
+.tese{
+  text-align:center;font-size:15px;color:var(--apoio);
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--linha);
+}
+.tese b{color:var(--texto);font-weight:600}
+.parcela{text-align:center;font-size:13px;color:var(--apoio);margin-top:10px}
+
+/* ---------- vagas + contador ---------- */
+.agenda{
+  max-width:560px;margin:16px auto 0;
+  background:var(--superficie-alta);border:1px solid var(--linha);
+  border-radius:22px;padding:28px 22px;
+}
+.vagas{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+.bolinhas{display:flex;gap:5px;flex:none}
+.bolinhas i{width:12px;height:12px;border-radius:50%;background:var(--linha-forte)}
+.bolinhas i.livre{background:var(--amarelo)}
+.vagas p{font-size:13px;color:var(--apoio)}
+.vagas p b{color:var(--texto);font-weight:600}
+
+.relogio{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.un{
+  background:rgba(245,233,242,.04);border:1px solid var(--linha);
+  border-radius:10px;padding:12px 0;text-align:center;
+}
+.un .n{
+  font-family:var(--display);font-weight:800;font-size:23px;
+  letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;
+}
+.un .l{
+  font-size:10px;color:var(--apoio);text-transform:uppercase;
+  letter-spacing:.11em;margin-top:7px;
+}
+.legenda-relogio{
+  font-size:12px;color:var(--apoio);margin-top:15px;text-align:center;line-height:1.5;
+}
+
+/* ---------- processo ---------- */
+.etapas{display:grid;gap:2px;border:1px solid var(--linha);border-radius:16px;overflow:hidden}
+.etapa{
+  background:var(--superficie-alta);padding:26px 22px;
+  display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;
+}
+.etapa .num{
+  font-family:var(--display);font-weight:800;font-size:15px;
+  color:var(--laranja);padding-top:3px;letter-spacing:.02em;
+}
+.etapa h3{font-size:18px;font-weight:600;margin-bottom:7px;letter-spacing:-.02em}
+.etapa p{color:var(--apoio);font-size:15px}
+
+/* ---------- porquê ---------- */
+.porque{max-width:60ch}
+.porque p{font-size:17px;color:var(--apoio);margin-bottom:18px;line-height:1.65}
+.porque p:last-child{margin-bottom:0}
+.porque strong{color:var(--texto);font-weight:600}
+
+.assinatura{
+  display:flex;align-items:center;gap:14px;margin-top:32px;
+  padding-top:24px;border-top:1px solid var(--linha);
+}
+.assinatura .marca-inicial{
+  font-family:var(--display);font-weight:800;font-size:17px;
+  width:46px;height:46px;border-radius:12px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--linha-forte);letter-spacing:-.02em;
+}
+.assinatura .quem b{display:block;font-weight:600;font-size:15px}
+.assinatura .quem span{font-size:13px;color:var(--apoio)}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--linha)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{
+  cursor:pointer;list-style:none;
+  padding:20px 34px 20px 0;position:relative;
+  font-family:var(--display);font-weight:600;font-size:16px;
+  letter-spacing:-.01em;line-height:1.35;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:4px;top:19px;
+  font-size:20px;color:var(--laranja);font-weight:400;
+  transition:transform .2s ease;
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .resposta{padding:0 34px 22px 0;color:var(--apoio);font-size:15px}
+
+/* ---------- CTA final ---------- */
+.final{text-align:center}
+.final h2{max-width:20ch;margin-left:auto;margin-right:auto}
+.final p{color:var(--apoio);max-width:46ch;margin:0 auto 30px}
+.resumo{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;
+  margin-top:22px;font-size:13px;color:var(--apoio);
+}
+.resumo b{color:var(--amarelo);font-weight:600}
+
+/* ---------- rodapé ---------- */
+.rodape{
+  border-top:1px solid var(--linha);padding:34px 0 110px;
+  font-size:13px;color:var(--apoio);
+}
+.rodape .linha{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+.rodape a{text-decoration:none;color:var(--apoio)}
+.rodape a:hover{color:var(--texto)}
+
+/* ---------- botão flutuante ---------- */
+.flutuante{
+  position:fixed;right:16px;bottom:16px;z-index:50;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 20px;border-radius:999px;
+  background:linear-gradient(94deg,var(--laranja),var(--magenta));
+  color:#fff;text-decoration:none;font-weight:600;font-size:15px;
+  box-shadow:0 8px 24px rgba(0,0,0,.45);
+  transition:transform .18s ease;
+}
+.flutuante:hover{transform:translateY(-2px)}
+
+/* ---------- revelação ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease}
+.reveal.visivel{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;transition-duration:.001ms!important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+
+/* ---------- responsivo ---------- */
+@media (min-width:720px){
+  .faixa{padding:96px 0}
+  .faixa--alta{padding:120px 0}
+  .cards{grid-template-columns:repeat(3,1fr)}
+  .escopo{grid-template-columns:1.1fr .9fr;align-items:start}
+  .dupla{grid-template-columns:1fr 1fr;gap:20px}
+  .etapas{grid-template-columns:repeat(3,1fr)}
+  .preco-bloco{padding:44px 38px}
+  .agenda{padding:32px 38px}
+  .card,.painel{padding:30px 26px}
+  .hero{padding:64px 0 110px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPO -->
+<header class="topo">
+  <div class="container">
+    <a class="lockup" href="#topo" aria-label="VRC, páginas que transformam">
+      <span class="sigla">VRC</span>
+      <span class="slogan">Páginas que transformam</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="container hero-grid">
+    <div>
+      <div class="selo">
+        <span class="ponto" aria-hidden="true"></span>
+        <span><b>2 vagas</b> na agenda deste mês</span>
+      </div>
+
+      <h1>Página de vendas completa pelo preço de uma <em>landing simples</em>.</h1>
+
+      <p class="sub">O mercado cobra <strong>R$ 997</strong> por um modelo pronto com o seu logotipo aplicado. Pelo mesmo valor, desenvolvo do zero uma página de sete seções, decidida a partir do seu negócio, que leva o visitante do primeiro clique até a sua conversa no WhatsApp.</p>
+
+      <a class="btn btn--principal" href="https://wa.me/5521996963471?text=Oi%20Vitor!%20Vim%20pela%20p%C3%A1gina%20e%20quero%20a%20p%C3%A1gina%20de%20vendas%20completa.%20Meu%20neg%C3%B3cio%20%C3%A9%3A%20" target="_blank" rel="noopener" data-origem="hero">
+        Solicitar minha página
+      </a>
+
+      <p class="micro">Respondo em até 2 horas. Sem intermediário, sem formulário longo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECONHECIMENTO -->
+<section class="faixa faixa--fundo">
+  <div class="container">
+    <p class="eyebrow">Diagnóstico</p>
+    <h2 class="h-secao">Três situações. Se alguma for a sua, continue lendo.</h2>
+    <p class="sub-secao">São os motivos mais comuns pelos quais um negócio com público não converte esse público em conversa.</p>
+
+    <div class="cards">
+      <article class="card reveal">
+        <h3>O link que não leva a lugar nenhum</h3>
+        <p>O perfil tem seguidor e engajamento, mas o link da bio abre uma conversa vazia. O interessado chega sem informação e você recomeça a explicação do zero em cada atendimento.</p>
+      </article>
+      <article class="card reveal">
+        <h3>O orçamento que inviabiliza</h3>
+        <p>Cinco mil reais, dois meses de prazo e três reuniões de alinhamento. Para quem precisa vender no mês seguinte, isso não é uma proposta. É um adiamento.</p>
+      </article>
+      <article class="card reveal">
+        <h3>A página que só informa</h3>
+        <p>Você já pagou por uma página. Ela tem um título, uma imagem e um formulário. Comunica que a empresa existe, mas não apresenta argumento nenhum para a pessoa comprar. São produtos diferentes com o mesmo nome.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ESCOPO -->
+<section class="faixa">
+  <div class="container">
+    <p class="eyebrow">O que está incluído</p>
+    <h2 class="h-secao">Tudo o que compõe os R$&nbsp;997</h2>
+    <p class="sub-secao">Não é modelo pronto com o seu logotipo aplicado. É a mesma estrutura que agência entrega por três mil reais.</p>
+
+    <div class="escopo">
+      <div class="painel">
+        <h3>Entregue no projeto</h3>
+        <ul class="lista lista--dentro">
+          <li><span class="marca" aria-hidden="true">—</span><span>Estrutura completa de até sete seções: abertura, diagnóstico, oferta, prova, objeções, perguntas frequentes e chamada final</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Texto escrito por mim. Você não precisa enviar conteúdo pronto</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Layout desenvolvido para o seu negócio, não reaproveitado</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Versão para celular ajustada seção por seção</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Botão de WhatsApp com mensagem pré-preenchida, para o contato chegar identificado</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Formulário com envio direto para o seu e-mail</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Pixel da Meta e Google Analytics instalados e testados</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Domínio configurado e hospedagem do primeiro ano</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Uma rodada de ajustes após a entrega</span></li>
+          <li><span class="marca" aria-hidden="true">—</span><span>Sete dias úteis, contados a partir do briefing</span></li>
+        </ul>
+      </div>
+
+      <div class="painel painel--fora">
+        <h3>O que não está incluído</h3>
+        <p class="nota-fora">Informo antes do pagamento, não depois.</p>
+        <ul class="lista lista--fora">
+          <li><span class="marca" aria-hidden="true">×</span><span>Carrinho de compras e pagamento on-line. Isso é loja virtual, projeto distinto</span></li>
+          <li><span class="marca" aria-hidden="true">×</span><span>Área de membros ou cadastro de usuário</span></li>
+          <li><span class="marca" aria-hidden="true">×</span><span>Blog ou sistema de publicação</span></li>
+          <li><span class="marca" aria-hidden="true">×</span><span>Produção de foto e vídeo</span></li>
+          <li><span class="marca" aria-hidden="true">×</span><span>Rodadas de ajuste além da primeira, orçadas à parte</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tabela-wrap">
+      <table>
+        <caption class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Comparação entre landing simples e a página completa</caption>
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Landing simples</th>
+            <th scope="col">O que entrego</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Seções</td><td>1 a 2</td><td>Até 7</td></tr>
+          <tr><td>Texto</td><td>Por sua conta</td><td>Escrito por mim</td></tr>
+          <tr><td>Origem do layout</td><td>Tema comprado e adaptado</td><td>Arquivo em branco</td></tr>
+          <tr><td>Estrutura das seções</td><td>Fixa pelo modelo</td><td>Definida com você</td></tr>
+          <tr><td>Rastreamento</td><td>Não incluso</td><td>Pixel e Analytics</td></tr>
+          <tr><td>Domínio e hospedagem</td><td>À parte</td><td>Primeiro ano incluso</td></tr>
+          <tr><td>Investimento</td><td>R$ 900 a R$ 1.800</td><td>R$ 997</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- AUSÊNCIA DE MODELO -->
+<section class="faixa faixa--fundo">
+  <div class="container">
+    <p class="eyebrow">Construção</p>
+    <h2 class="h-secao">Nada aqui sai de um modelo pronto.</h2>
+    <p class="sub-secao">A maioria das páginas nessa faixa de preço é um tema comprado por vinte dólares, com o logotipo trocado e a cor ajustada. Funciona, até o dia em que o seu cliente reconhece a mesma página em outro negócio do mesmo ramo.</p>
+
+    <div class="painel">
+      <h3>Cada projeto começa em arquivo vazio. Você define:</h3>
+      <ul class="lista lista--dentro">
+        <li><span class="marca" aria-hidden="true">—</span><span>Quais seções entram e em que ordem aparecem</span></li>
+        <li><span class="marca" aria-hidden="true">—</span><span>Cores e tipografia, alinhadas à sua identidade ou criadas do zero</span></li>
+        <li><span class="marca" aria-hidden="true">—</span><span>O que o visitante vê primeiro no celular</span></li>
+        <li><span class="marca" aria-hidden="true">—</span><span>O texto de cada botão e o que chega escrito na sua conversa</span></li>
+      </ul>
+    </div>
+
+    <div class="dupla">
+      <figure class="moldura reveal">
+        <div class="barra" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tela">Substituir pela captura da página do Adilio Terra</div>
+        <figcaption><b>Adilio Terra</b>Advocacia imobiliária</figcaption>
+      </figure>
+      <figure class="moldura reveal">
+        <div class="barra" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tela">Substituir pela captura da página do Planni</div>
+        <figcaption><b>Planni</b>Aplicativo de finanças pessoais</figcaption>
+      </figure>
+    </div>
+    <p class="legenda-dupla">Mesmo profissional, mesmo investimento. <b>Nenhuma seção em comum.</b></p>
+  </div>
+</section>
+
+<!-- PREÇO -->
+<section class="faixa faixa--alta">
+  <div class="container">
+    <div class="preco-bloco">
+      <p class="eyebrow" style="text-align:center">O investimento</p>
+      <div class="precos">
+        <div class="col riscado">
+          <p class="rot">Página completa<br>no mercado</p>
+          <p class="valor">R$ 1.897</p>
+        </div>
+        <div class="seta" aria-hidden="true">→</div>
+        <div class="col atual">
+          <p class="rot">Comigo, mesma<br>entrega</p>
+          <p class="valor">R$ 997</p>
+        </div>
+      </div>
+      <p class="tese">R$ 997 é o que se cobra por uma <b>landing simples</b>. É o que eu cobro pela <b>página completa</b>.</p>
+      <p class="parcela">Metade na contratação, metade na entrega. Pix ou cartão.</p>
+    </div>
+
+    <div class="agenda">
+      <p class="eyebrow eyebrow--apoio" id="rotulo-agenda">Agenda deste mês</p>
+      <div class="vagas">
+        <div class="bolinhas" aria-hidden="true"><i></i><i></i><i class="livre"></i><i class="livre"></i></div>
+        <p><b>2 de 4 vagas</b> disponíveis</p>
+      </div>
+      <div class="relogio" role="timer" aria-labelledby="rotulo-agenda">
+        <div class="un"><p class="n" id="d">--</p><p class="l">dias</p></div>
+        <div class="un"><p class="n" id="h">--</p><p class="l">horas</p></div>
+        <div class="un"><p class="n" id="m">--</p><p class="l">min</p></div>
+        <div class="un"><p class="n" id="s">--</p><p class="l">seg</p></div>
+      </div>
+      <p class="legenda-relogio">Encerramento das contratações do mês. Projetos fechados depois disso entram para o mês seguinte.</p>
+      <a class="btn btn--principal btn--largo" style="margin-top:20px" href="https://wa.me/5521996963471?text=Oi%20Vitor!%20Vim%20pela%20p%C3%A1gina%20e%20quero%20garantir%20uma%20vaga%20deste%20m%C3%AAs.%20Meu%20neg%C3%B3cio%20%C3%A9%3A%20" target="_blank" rel="noopener" data-origem="preco">
+        Garantir uma das vagas
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA -->
+<section class="faixa faixa--fundo">
+  <div class="container">
+    <p class="eyebrow">Portfólio</p>
+    <h2 class="h-secao">Projetos entregues</h2>
+
+    <div class="cards" style="grid-template-columns:none">
+      <article class="card reveal">
+        <h3>Adilio Terra — Advocacia imobiliária</h3>
+        <p>Presença on-line dispersa entre redes sociais, sem um endereço que apresentasse a especialidade. Construí uma página única que explica a atuação e conduz ao contato direto.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Planni — Aplicativo de finanças pessoais</h3>
+        <p>Produto próprio, do conceito à publicação: página de vendas, integração de pagamento e área de assinatura. Não vendo página como serviço isolado. Vendo o que aprendi construindo produto que cobra do cliente final.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="faixa">
+  <div class="container">
+    <p class="eyebrow">Processo</p>
+    <h2 class="h-secao">Três etapas</h2>
+    <p class="sub-secao">Da primeira mensagem à página publicada, sem reunião de alinhamento no meio.</p>
+
+    <div class="etapas">
+      <div class="etapa">
+        <span class="num" aria-hidden="true">01</span>
+        <div>
+          <h3>Briefing de 20 minutos</h3>
+          <p>Por chamada ou WhatsApp. Identifico o que você vende, para quem, e qual ação a página precisa provocar.</p>
+        </div>
+      </div>
+      <div class="etapa">
+        <span class="num" aria-hidden="true">02</span>
+        <div>
+          <h3>Construção</h3>
+          <p>Sete dias úteis. Não preciso que envie texto nem referência visual. Se tiver, uso como base.</p>
+        </div>
+      </div>
+      <div class="etapa">
+        <span class="num" aria-hidden="true">03</span>
+        <div>
+          <h3>Ajuste e publicação</h3>
+          <p>Uma rodada de alterações inclusa. Aprovado, publico no seu domínio e entrego em funcionamento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE CUSTA MENOS -->
+<section class="faixa faixa--fundo">
+  <div class="container">
+    <p class="eyebrow">A pergunta que você não fez</p>
+    <h2 class="h-secao">Por que custa menos</h2>
+
+    <div class="porque">
+      <p>Não mantenho escritório, equipe de atendimento nem gerente de projeto entre nós. <strong>Você fala comigo e eu construo.</strong> Todo o custo que uma agência precisa cobrir em estrutura, eu simplesmente não tenho.</p>
+      <p>A segunda razão é de origem. Atuo como assessor de investimentos e passei anos analisando por que um negócio converte e outro não. A página que entrego não é apenas um layout: ela é construída sobre uma pergunta objetiva — <strong>quanto custa cada visitante que chega ao seu perfil e sai sem falar com você.</strong></p>
+
+      <div class="assinatura">
+        <span class="marca-inicial" aria-hidden="true">VRC</span>
+        <div class="quem">
+          <b>Vitor Reis de Carvalho</b>
+          <span>Assessor de investimentos (CEA) e desenvolvedor</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faixa">
+  <div class="container">
+    <p class="eyebrow">Antes de você perguntar</p>
+    <h2 class="h-secao">Perguntas frequentes</h2>
+
+    <div class="faq">
+      <details>
+        <summary>R$ 997 é o valor final?</summary>
+        <p class="resposta">Sim, para o escopo descrito acima. Se o seu projeto exigir algo fora dele, informo antes de iniciar.</p>
+      </details>
+      <details>
+        <summary>O prazo é real?</summary>
+        <p class="resposta">Sete dias úteis, contados a partir do envio das informações do briefing. Não da data do pagamento.</p>
+      </details>
+      <details>
+        <summary>Preciso escrever os textos?</summary>
+        <p class="resposta">Não. A redação está incluída.</p>
+      </details>
+      <details>
+        <summary>Personalizado significa alterações ilimitadas?</summary>
+        <p class="resposta">Não. A personalização acontece na construção: você define estrutura, cores, tipografia e conteúdo antes de eu começar. Depois da entrega, uma rodada de ajustes está inclusa. São etapas diferentes, e informo isso antes para não haver ruído no fim do projeto.</p>
+      </details>
+      <details>
+        <summary>Posso enviar uma referência de página que eu gosto?</summary>
+        <p class="resposta">Pode, e ajuda. Uso como direção, não como cópia.</p>
+      </details>
+      <details>
+        <summary>E se o resultado não me agradar?</summary>
+        <p class="resposta">Uma rodada de ajustes está inclusa. Alterações adicionais têm valor definido antes da execução.</p>
+      </details>
+      <details>
+        <summary>Já tenho site. Faz sentido?</summary>
+        <p class="resposta">Faz, e costuma ser o melhor cenário. A página de vendas opera ao lado do site institucional, com função diferente.</p>
+      </details>
+      <details>
+        <summary>De quem é o domínio?</summary>
+        <p class="resposta">Seu. Registro tudo em seu nome. Você não depende de mim para manter a página no ar.</p>
+      </details>
+      <details>
+        <summary>Existe mensalidade?</summary>
+        <p class="resposta">Não obrigatória. Manutenção é opcional, a partir de R$ 150 por mês.</p>
+      </details>
+      <details>
+        <summary>Como funciona o pagamento?</summary>
+        <p class="resposta">Metade na contratação, metade na entrega. Pix ou cartão.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="faixa faixa--alta final">
+  <div class="container">
+    <h2 class="h-secao">Descreva o que você vende. Digo se consigo ajudar.</h2>
+    <p>Se o seu caso não for adequado ao que entrego, informo na primeira mensagem. Não ocupo o seu tempo nem o meu.</p>
+
+    <a class="btn btn--principal" href="https://wa.me/5521996963471?text=Oi%20Vitor!%20Vim%20pela%20p%C3%A1gina%20e%20quero%20a%20p%C3%A1gina%20de%20vendas%20completa.%20Meu%20neg%C3%B3cio%20%C3%A9%3A%20" target="_blank" rel="noopener" data-origem="cta-final">
+      Falar no WhatsApp
+    </a>
+
+    <div class="resumo">
+      <span><b>R$ 997</b></span>
+      <span>7 dias úteis</span>
+      <span>Domínio em seu nome</span>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="rodape">
+  <div class="container linha">
+    <div>
+      <strong style="font-family:var(--display);letter-spacing:-.02em;color:var(--texto)">VRC</strong>
+      — Páginas que transformam
+    </div>
+    <div>
+      <a href="mailto:vitor.rscarv@gmail.com">vitor.rscarv@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://wa.me/5521996963471" target="_blank" rel="noopener">(21) 99696-3471</a>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÃO FLUTUANTE -->
+<a class="flutuante" href="https://wa.me/5521996963471?text=Oi%20Vitor!%20Vim%20pela%20p%C3%A1gina%20e%20quero%20a%20p%C3%A1gina%20de%20vendas%20completa.%20Meu%20neg%C3%B3cio%20%C3%A9%3A%20" target="_blank" rel="noopener" data-origem="flutuante" aria-label="Falar no WhatsApp">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+  WhatsApp
+</a>
+
+<script>
+(function(){
+  'use strict';
+
+  /* Contador: aponta para o último instante do mês corrente.
+     Data real — não reinicia quando o visitante recarrega a página. */
+  function alvo(){
+    var a = new Date();
+    return new Date(a.getFullYear(), a.getMonth()+1, 0, 23, 59, 59);
+  }
+  var fim = alvo();
+  var el = {
+    d: document.getElementById('d'),
+    h: document.getElementById('h'),
+    m: document.getElementById('m'),
+    s: document.getElementById('s')
+  };
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var resta = fim - new Date();
+    if (resta <= 0){ fim = alvo(); resta = fim - new Date(); }
+    var seg = Math.floor(resta/1000);
+    el.d.textContent = pad(Math.floor(seg/86400));
+    el.h.textContent = pad(Math.floor(seg%86400/3600));
+    el.m.textContent = pad(Math.floor(seg%3600/60));
+    el.s.textContent = pad(seg%60);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* Revelação suave ao rolar */
+  var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var alvos = document.querySelectorAll('.reveal');
+  if (reduzir || !('IntersectionObserver' in window)){
+    alvos.forEach(function(n){ n.classList.add('visivel'); });
+  } else {
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add('visivel');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+    alvos.forEach(function(n){ obs.observe(n); });
+  }
+
+  /* Rastreamento de origem do clique.
+     Funciona assim que você instalar GA4 ou o Pixel da Meta. */
+  document.querySelectorAll('[data-origem]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var origem = a.getAttribute('data-origem');
+      if (typeof gtag === 'function'){
+        gtag('event', 'clique_whatsapp', { origem: origem });
+      }
+      if (typeof fbq === 'function'){
+        fbq('track', 'Contact', { origem: origem });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
