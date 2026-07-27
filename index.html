@@ -89,18 +89,35 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   padding:18px 0;
 }
 .topo .container{
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:12px;
 }
-.lockup{display:inline-flex;text-decoration:none;flex:none}
+.lockup{
+  display:inline-flex;flex-direction:column;gap:4px;
+  text-decoration:none;justify-self:start;
+}
 .lockup .sigla{
   font-family:var(--display);font-weight:800;font-size:26px;
   letter-spacing:-.02em;line-height:1;color:#fff;
 }
+.lockup .sublinha{
+  font-family:var(--corpo);font-size:10px;font-weight:600;
+  letter-spacing:.1em;line-height:1;color:rgba(255,255,255,.85);
+}
 .chamada-topo{
+  grid-column:2;
   font-family:var(--display);font-weight:800;
-  font-size:clamp(11px,2.9vw,15px);
+  font-size:clamp(11px,2.6vw,15px);
   letter-spacing:.14em;text-transform:uppercase;
-  line-height:1;color:#fff;text-align:right;
+  line-height:1;color:#fff;text-align:center;
+}
+
+/* No celular a sigla ocupa quase metade da barra e empurraria a frase
+   para fora do centro: as duas passam a ocupar linhas próprias. */
+@media (max-width:559px){
+  .topo .container{grid-template-columns:1fr;justify-items:center;gap:10px}
+  .lockup{justify-self:center;align-items:center}
+  .chamada-topo{grid-column:1}
 }
 
 /* ---------- hero ---------- */
@@ -421,8 +438,9 @@ tbody td:last-child{color:var(--texto);font-weight:500}
 <!-- TOPO -->
 <header class="topo">
   <div class="container">
-    <a class="lockup" href="#topo" aria-label="VRC">
+    <a class="lockup" href="#topo" aria-label="VRC, landing pages">
       <span class="sigla">VRC</span>
+      <span class="sublinha">landingPages</span>
     </a>
     <p class="chamada-topo">Páginas espetaculares</p>
   </div>
