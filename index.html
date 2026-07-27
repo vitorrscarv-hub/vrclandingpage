@@ -84,15 +84,23 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 
 /* ---------- topo / lockup ---------- */
-.topo{padding:26px 0 0}
-.lockup{display:inline-flex;flex-direction:column;gap:1px;text-decoration:none}
+.topo{
+  background:linear-gradient(94deg,var(--laranja),var(--magenta));
+  padding:18px 0;
+}
+.topo .container{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.lockup{display:inline-flex;text-decoration:none;flex:none}
 .lockup .sigla{
   font-family:var(--display);font-weight:800;font-size:26px;
-  letter-spacing:-.02em;line-height:1;
+  letter-spacing:-.02em;line-height:1;color:#fff;
 }
-.lockup .slogan{
-  font-size:11px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--apoio);font-weight:500;
+.chamada-topo{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(11px,2.9vw,15px);
+  letter-spacing:.14em;text-transform:uppercase;
+  line-height:1;color:#fff;text-align:right;
 }
 
 /* ---------- hero ---------- */
@@ -413,10 +421,10 @@ tbody td:last-child{color:var(--texto);font-weight:500}
 <!-- TOPO -->
 <header class="topo">
   <div class="container">
-    <a class="lockup" href="#topo" aria-label="VRC, páginas que transformam">
+    <a class="lockup" href="#topo" aria-label="VRC">
       <span class="sigla">VRC</span>
-      <span class="slogan">Páginas que transformam</span>
     </a>
+    <p class="chamada-topo">Páginas espetaculares</p>
   </div>
 </header>
 
