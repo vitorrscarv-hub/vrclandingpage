@@ -409,17 +409,28 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   padding:34px 26px;max-width:560px;margin:42px auto 0;
   background:var(--superficie-alta);text-align:center;
 }
+/* A trilha mostra a agenda enchendo: um segmento por projeto do mês.
+   Os segmentos ainda livres pulsam devagar. */
+.trilha{display:flex;gap:6px;margin-bottom:20px}
+.trilha span{
+  flex:1;height:14px;border-radius:4px;
+  background:rgba(245,233,242,.08);border:1px solid var(--linha);
+}
+.trilha span.cheia{background:var(--gradiente);border-color:transparent}
+.trilha span.livre{
+  background:var(--amarelo);border-color:transparent;
+  animation:pulsa 2s ease-in-out infinite;
+}
+@keyframes pulsa{0%,100%{opacity:1}50%{opacity:.45}}
+
 .vagas-numero{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(40px,11vw,58px);letter-spacing:-.04em;line-height:1;
+  font-size:clamp(30px,7.4vw,44px);letter-spacing:-.03em;line-height:1.05;
 }
-.vagas-numero .de{color:var(--apoio);font-size:.5em;letter-spacing:-.02em}
-.vagas-texto{font-size:15px;color:var(--apoio);margin-top:12px}
-.bolinhas{display:flex;gap:6px;justify-content:center;margin-top:22px;flex-wrap:wrap}
-.bolinhas i{width:13px;height:13px;border-radius:50%;background:var(--linha-forte)}
-.bolinhas i.livre{background:var(--amarelo)}
-.capacidade .btn{margin-top:26px}
-.encerrada .vagas-numero{color:var(--apoio)}
+.vagas-numero em{font-style:normal;color:var(--amarelo)}
+.vagas-texto{font-size:15px;color:var(--apoio);margin-top:10px}
+.capacidade .btn{margin-top:24px}
+.encerrada .vagas-numero,.encerrada .vagas-numero em{color:var(--apoio)}
 
 /* ---------- FAQ ---------- */
 .faq{border-top:1px solid var(--linha)}
@@ -855,12 +866,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     <p class="solo"><span class="solo--gradiente">Minha capacidade é de até 8 páginas por mês.</span></p>
 
     <div class="capacidade" id="bloco-vagas">
-      <p class="eyebrow eyebrow--apoio" style="margin-bottom:12px">Agenda deste mês</p>
-      <p class="vagas-numero"><span id="vagas-livres">3</span><span class="de"> de <span id="vagas-total">8</span></span></p>
-      <p class="vagas-texto" id="vagas-texto">vagas disponíveis este mês</p>
-      <div class="bolinhas" id="vagas-bolinhas" aria-hidden="true">
-        <i class="livre"></i><i class="livre"></i><i class="livre"></i><i></i><i></i><i></i><i></i><i></i>
+      <p class="eyebrow eyebrow--apoio" style="margin-bottom:14px">Agenda deste mês</p>
+      <div class="trilha" id="vagas-trilha" aria-hidden="true">
+        <span class="cheia"></span><span class="cheia"></span><span class="cheia"></span>
+        <span class="cheia"></span><span class="cheia"></span>
+        <span class="livre"></span><span class="livre"></span><span class="livre"></span>
       </div>
+      <p class="vagas-numero"><em id="vagas-livres">3</em> de <span id="vagas-total">8</span> vagas</p>
+      <p class="vagas-texto" id="vagas-texto">5 projetos já ocupam a agenda deste mês</p>
       <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="vagas" id="cta-vagas">Quero garantir minha vaga</a>
       <p class="preco-etiqueta"><b>R$ 997</b> — contratação direta pelo checkout</p>
     </div>
@@ -1020,13 +1033,15 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     texto('vagas-total', total);
     texto('vagas-total-final', total);
 
-    var caixa = document.getElementById('vagas-bolinhas');
-    if (caixa){
-      caixa.innerHTML = '';
+    /* Os segmentos ocupados vêm primeiro, para a trilha ser lida como
+       uma agenda que enche da esquerda para a direita. */
+    var trilha = document.getElementById('vagas-trilha');
+    if (trilha){
+      trilha.innerHTML = '';
       for (var i = 0; i < total; i++){
-        var b = document.createElement('i');
-        if (i < livres) b.className = 'livre';
-        caixa.appendChild(b);
+        var s = document.createElement('span');
+        s.className = i < (total - livres) ? 'cheia' : 'livre';
+        trilha.appendChild(s);
       }
     }
 
@@ -1047,9 +1062,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
           NAO_CONFIGURADO.test(CONFIG.LISTA_ESPERA_URL) ? '#' : CONFIG.LISTA_ESPERA_URL);
       });
     } else if (elTexto){
-      elTexto.textContent = livres === 1
-        ? 'vaga disponível este mês'
-        : 'vagas disponíveis este mês';
+      /* usadas, e não ocupadas: se o número informado passar da
+         capacidade, o texto continua batendo com a trilha. */
+      var usadas = total - livres;
+      elTexto.textContent = usadas === 0
+        ? 'A agenda deste mês está aberta'
+        : usadas === 1
+          ? '1 projeto já ocupa a agenda deste mês'
+          : usadas + ' projetos já ocupam a agenda deste mês';
     }
   }
 
