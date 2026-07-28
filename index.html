@@ -405,6 +405,67 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 .bonus-itens .marca{color:var(--verde);font-weight:700}
 
+/* ---------- preço ---------- */
+.preco-bloco{
+  border:1px solid var(--linha-forte);border-radius:22px;
+  padding:36px 24px;max-width:600px;margin:0 auto;
+  background:var(--superficie-alta);
+}
+.precos{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:10px;
+}
+.col{text-align:center}
+.col .rot{
+  font-size:11px;color:var(--apoio);text-transform:uppercase;
+  letter-spacing:.1em;margin-bottom:12px;min-height:30px;line-height:1.35;
+}
+.valor{
+  font-family:var(--display);font-weight:800;
+  letter-spacing:-.04em;line-height:1;
+}
+.riscado .valor{
+  font-size:clamp(24px,6.4vw,32px);color:var(--apoio);
+  position:relative;display:inline-block;
+}
+.riscado .valor::after{
+  content:"";position:absolute;left:-8%;right:-8%;top:50%;height:3px;
+  background:var(--laranja);transform:rotate(-8deg);border-radius:2px;
+}
+.riscado .obs{font-size:11px;color:var(--apoio);margin-top:10px;opacity:.8}
+.seta{font-size:20px;color:var(--laranja);padding-top:26px}
+.atual .rot{color:var(--amarelo);font-weight:600}
+.atual .valor{font-size:clamp(40px,11vw,56px);color:var(--texto)}
+.preco-tese{
+  text-align:center;font-size:16px;line-height:1.55;color:var(--apoio);
+  margin-top:26px;padding-top:22px;border-top:1px solid var(--linha);
+}
+.preco-tese b{color:var(--texto);font-weight:600}
+.preco-inclui{
+  list-style:none;display:grid;gap:10px;margin-top:24px;
+  padding-top:22px;border-top:1px solid var(--linha);
+}
+.preco-inclui li{
+  display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:15px;
+}
+.preco-inclui .marca{color:var(--verde);font-weight:700}
+.preco-cta{text-align:center;margin-top:28px}
+.preco-etiqueta{font-size:13px;color:var(--apoio);margin-top:12px}
+.preco-etiqueta b{color:var(--texto);font-weight:600}
+
+/* Em telas estreitas as três colunas espremem o valor e ele quebra
+   no meio: a comparação passa a ser empilhada, com a seta apontando
+   para baixo. */
+@media (max-width:599px){
+  .precos{grid-template-columns:1fr;gap:4px}
+  .col .rot{min-height:0;margin-bottom:8px}
+  /* justify-self encolhe o item ao tamanho do caractere: sem isso ele
+     ocupa a coluna inteira e, ao girar, vaza para fora do bloco. */
+  .seta{transform:rotate(90deg);padding:0;justify-self:center;line-height:1;margin:14px 0}
+  .riscado .valor{font-size:30px}
+  .atual .valor{font-size:48px}
+}
+
 /* ---------- depoimentos em vídeo ---------- */
 .depoimentos{display:grid;gap:20px}
 .depo{
@@ -563,7 +624,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     <p class="sub"><strong>Eu penso na estratégia, desenvolvo a copy e construo uma página personalizada para o seu negócio.</strong></p>
 
     <a class="btn btn--principal" data-checkout href="#" data-origem="hero">Quero criar minha página</a>
-    <p class="btn-nota">Contratação direta pelo checkout. Sem formulário, sem fila de espera para falar comigo.</p>
+    <p class="btn-nota"><b style="color:var(--texto)">R$ 997</b> — contratação direta pelo checkout. Sem formulário, sem fila de espera para falar comigo.</p>
 
     <div class="selos">
       <span class="selo">
@@ -965,6 +1026,52 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
+<!-- ============ PREÇO ============
+     Os dois valores abaixo são os únicos números de preço da página.
+     O valor de referência da agência deve refletir o que você realmente
+     observa no mercado — troque-o aqui se a sua leitura for outra. -->
+<section class="faixa">
+  <div class="container container--estreito">
+    <p class="eyebrow">O investimento</p>
+    <h2 class="h-secao">Quanto custa?</h2>
+
+    <div class="fala" style="margin-bottom:38px">
+      <p>Uma agência cobra pela estrutura inteira.</p>
+      <p class="curta">Eu cobro pelo trabalho.</p>
+    </div>
+
+    <div class="preco-bloco reveal">
+      <div class="precos">
+        <div class="col riscado">
+          <p class="rot">Uma agência</p>
+          <p class="valor">R$ 3.000</p>
+          <p class="obs">valor de referência de mercado</p>
+        </div>
+        <div class="seta" aria-hidden="true">→</div>
+        <div class="col atual">
+          <p class="rot">Comigo</p>
+          <p class="valor">R$ 997</p>
+        </div>
+      </div>
+
+      <p class="preco-tese">A diferença não está no cuidado com o seu projeto.<br>Está em <b>tudo o que você deixa de pagar no meio do caminho.</b></p>
+
+      <ul class="preco-inclui">
+        <li><span class="marca" aria-hidden="true">✓</span><span>Estratégia pensada para o seu negócio</span></li>
+        <li><span class="marca" aria-hidden="true">✓</span><span>Copy desenvolvida por mim, do zero</span></li>
+        <li><span class="marca" aria-hidden="true">✓</span><span>Página construída de forma personalizada</span></li>
+        <li><span class="marca" aria-hidden="true">✓</span><span>Revisão e ajustes previstos no projeto</span></li>
+        <li><span class="marca" aria-hidden="true">✓</span><span>Bônus: domínio próprio e e-mail profissional</span></li>
+      </ul>
+
+      <div class="preco-cta">
+        <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="preco">Quero criar minha página</a>
+        <p class="preco-etiqueta">Contratação direta pelo checkout. <b>Até 10 projetos por mês.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 14. DEPOIMENTOS EM VÍDEO ============ -->
 <section class="faixa">
   <div class="container">
@@ -1041,6 +1148,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       <p class="vagas-texto" id="vagas-texto">vagas disponíveis este mês</p>
       <div class="bolinhas" id="vagas-bolinhas" aria-hidden="true"></div>
       <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="vagas" id="cta-vagas">Quero garantir minha vaga</a>
+      <p class="preco-etiqueta"><b>R$ 997</b> — contratação direta pelo checkout</p>
     </div>
   </div>
 </section>
@@ -1139,6 +1247,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
         <p class="resposta">Logotipo, identidade visual, imagens, vídeos, informações sobre produtos ou serviços, contatos, links, redes sociais e outros materiais necessários ao projeto. Depois do briefing eu envio a lista exata para o seu caso.</p>
       </details>
       <details>
+        <summary>Quanto custa?</summary>
+        <p class="resposta">R$ 997, com o escopo descrito na página. Se o seu projeto exigir algo fora dele, eu informo antes de começar — não depois.</p>
+      </details>
+      <details>
+        <summary>Por que custa menos do que uma agência?</summary>
+        <p class="resposta">Porque não existe estrutura entre nós. Não há atendimento, gestão, departamentos nem equipe para sustentar. Você paga pelo trabalho de quem pensa e constrói a sua página, e não pela operação que uma agência precisa manter de pé.</p>
+      </details>
+      <details>
         <summary>O que está incluído?</summary>
         <p class="resposta">Estratégia, copy, estrutura e construção da página personalizada, além do bônus de domínio próprio e e-mail profissional. A revisão e os ajustes previstos também estão inclusos.</p>
       </details>
@@ -1197,6 +1313,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     </p>
 
     <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="cta-final" id="cta-final" style="margin-top:20px">Quero criar minha página</a>
+    <p class="preco-etiqueta"><b>R$ 997</b> — contratação direta pelo checkout</p>
 
     <div class="selos selos--centro">
       <span class="selo">
