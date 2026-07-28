@@ -4,12 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VRC — Uma landing page espetacular, sem pagar por uma agência inteira</title>
-<meta name="description" content="Sou o Vitor, desenvolvedor independente. Penso na estratégia, desenvolvo a copy e construo uma landing page personalizada para o seu negócio. Até 10 projetos por mês.">
+<meta name="description" content="Sou o Vitor, desenvolvedor independente. Penso na estratégia, desenvolvo a copy e construo uma landing page personalizada para o seu negócio. Até 8 projetos por mês.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Uma landing page espetacular. Sem pagar por uma agência inteira.">
 <meta property="og:description" content="Você me conta o que vende. Eu penso na estratégia, desenvolvo a copy e construo a sua página.">
 <meta property="og:locale" content="pt_BR">
+
+<!-- ==================================================================
+     CONFIGURAÇÃO DA PÁGINA — o único lugar para editar links e números.
+     Nenhuma URL de checkout deve ser escrita em qualquer outro ponto.
+     ================================================================== -->
+<script>
+window.VRC = {
+  /* Link do checkout. Todos os botões de contratação usam este valor.
+     Enquanto estiver com o texto INSERIR_, os botões não navegam. */
+  CHECKOUT_URL: "INSERIR_URL_DO_CHECKOUT_AQUI",
+
+  /* Agendamento do briefing, usado no e-mail pós-pagamento
+     (ver arquivo email-confirmacao.html). */
+  BOOKING_URL: "INSERIR_URL_DE_AGENDAMENTO_AQUI",
+
+  /* Destino do botão quando a agenda do mês está encerrada. */
+  LISTA_ESPERA_URL: "INSERIR_URL_DA_LISTA_DE_ESPERA_AQUI",
+
+  /* Capacidade mensal e projetos já contratados no mês corrente.
+     8 - 5 = 3 vagas exibidas. Atualize OCUPADAS a cada contratação. */
+  VAGAS_TOTAL: 8,
+  VAGAS_OCUPADAS: 5,
+
+  /* Opcional: endereço que devolve {"ocupadas": 5}. Preenchido, tem
+     prioridade sobre VAGAS_OCUPADAS e mantém o contador em dia. */
+  VAGAS_API: ""
+};
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -196,11 +224,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .hero .sub + .sub{margin-bottom:36px}
 .hero .sub strong{color:var(--texto);font-weight:600}
 
-/* ---------- selos de segurança ---------- */
-.selos{
-  display:flex;flex-wrap:wrap;gap:12px;
-  margin-top:30px;
-}
+/* ---------- selos ---------- */
+.selos{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .selo{
   display:inline-flex;align-items:center;gap:9px;
   background:var(--superficie-alta);border:1px solid var(--linha);
@@ -210,24 +235,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .selo svg{flex:none;color:var(--verde)}
 .selos--centro{justify-content:center}
 
-.selos-detalhe{display:grid;gap:16px;margin-top:14px}
-.selo-card{
-  background:var(--superficie-alta);border:1px solid var(--linha);
-  border-radius:16px;padding:26px 22px;
-}
-.selo-card .icone{
-  width:44px;height:44px;border-radius:12px;
-  display:grid;place-items:center;margin-bottom:16px;
-  background:rgba(62,213,152,.1);color:var(--verde);
-  border:1px solid rgba(62,213,152,.2);
-}
-.selo-card h3{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:9px}
-.selo-card p{font-size:14px;color:var(--apoio)}
-
 /* ---------- apresentação ---------- */
-.retrato{
-  display:flex;align-items:center;gap:16px;margin-bottom:38px;
-}
+.retrato{display:flex;align-items:center;gap:16px;margin-bottom:38px}
 .retrato .inicial{
   font-family:var(--marca);font-weight:700;font-size:19px;
   width:56px;height:56px;border-radius:16px;flex:none;
@@ -237,36 +246,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .retrato b{display:block;font-weight:700;font-size:16px}
 .retrato span{font-size:14px;color:var(--apoio)}
 
-/* ---------- comparação de modelos ---------- */
-.modelos{display:grid;gap:18px;margin-top:38px}
-.modelo{
-  border:1px solid var(--linha);border-radius:18px;padding:30px 26px;
-  background:var(--superficie-alta);
-}
-.modelo--meu{
-  border-color:rgba(214,43,196,.34);
-  background:linear-gradient(168deg,rgba(214,43,196,.09),transparent 62%),var(--superficie-alta);
-}
-.modelo h3{font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:20px}
-.modelo ul{list-style:none;display:grid;gap:11px}
-.modelo li{
-  display:grid;grid-template-columns:18px 1fr;gap:11px;
-  font-size:16px;line-height:1.45;
-}
-.modelo li .marca{font-family:var(--display);font-weight:800;font-size:13px;line-height:1.5}
-.modelo--agencia{color:var(--apoio)}
-.modelo--agencia .marca{color:var(--apoio)}
-.modelo--meu .marca{color:var(--laranja)}
-.modelo .fecho{
-  margin-top:20px;padding-top:18px;border-top:1px solid var(--linha);
-  font-size:15px;color:var(--apoio);
-}
-
 /* ---------- listas de consideração ---------- */
-.consideracoes{
-  list-style:none;display:grid;gap:10px;
-  grid-template-columns:1fr;margin-top:8px;
-}
+.consideracoes{list-style:none;display:grid;gap:11px;margin-top:8px}
 .consideracoes li{
   display:grid;grid-template-columns:16px 1fr;gap:10px;
   font-size:16px;color:var(--apoio);
@@ -285,17 +266,11 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 .etapa h3{font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-.02em}
 .etapa p{color:var(--apoio);font-size:15px}
-.etapa .materiais{
-  list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;
-}
+.etapa .materiais{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
 .etapa .materiais li{
   font-size:12px;color:var(--apoio);
   border:1px solid var(--linha);border-radius:999px;padding:5px 11px;
 }
-.etapa--destaque{
-  background:linear-gradient(168deg,rgba(255,206,69,.08),transparent 60%),var(--superficie-alta);
-}
-.etapa--destaque .num{color:var(--amarelo)}
 .etapa .btn{margin-top:18px;padding:15px 26px;font-size:13px}
 
 /* ---------- prazo ---------- */
@@ -323,87 +298,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 .prazo .reforco b{color:var(--texto);font-weight:700}
 
-.piada{
-  border-left:3px solid var(--laranja);
-  padding:6px 0 6px 22px;margin-top:42px;
-}
+.piada{border-left:3px solid var(--laranja);padding:6px 0 6px 22px;margin-top:42px}
 .piada p{font-size:17px;line-height:1.55;margin-bottom:16px;max-width:48ch}
 .piada p:last-child{margin-bottom:0}
 .piada .remate{color:var(--apoio);font-style:italic}
-
-/* ---------- fluxo pós-pagamento ---------- */
-.fluxo{
-  list-style:none;display:grid;gap:0;
-  border:1px solid var(--linha);border-radius:18px;overflow:hidden;
-}
-.fluxo li{
-  display:grid;grid-template-columns:38px 1fr;gap:14px;align-items:baseline;
-  padding:15px 20px;font-size:15px;
-  border-bottom:1px solid var(--linha);
-  background:var(--superficie-alta);
-}
-.fluxo li:last-child{border-bottom:none}
-.fluxo li .n{
-  font-family:var(--marca);font-weight:700;font-size:12px;color:var(--apoio);
-}
-.fluxo li.marco{background:linear-gradient(90deg,rgba(255,206,69,.09),transparent 70%)}
-.fluxo li.marco .n{color:var(--amarelo)}
-.fluxo li.marco span{font-weight:600}
-
-/* ---------- portfólio ---------- */
-.projetos{display:grid;gap:20px}
-.projeto{
-  border:1px solid var(--linha);border-radius:18px;overflow:hidden;
-  background:var(--superficie-alta);
-}
-.projeto .barra{
-  display:flex;gap:5px;padding:12px 15px;border-bottom:1px solid var(--linha);
-}
-.projeto .barra i{width:8px;height:8px;border-radius:50%;background:var(--linha-forte)}
-/* Substituir .tela por <img src="..." alt="..."> com a captura real do projeto. */
-.projeto .tela{
-  aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:22px;color:var(--apoio);font-size:13px;
-  background:repeating-linear-gradient(45deg,rgba(245,233,242,.028) 0 12px,transparent 12px 24px);
-}
-.projeto .corpo{padding:24px 22px}
-.projeto .segmento{
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--magenta);font-weight:600;margin-bottom:10px;
-}
-.projeto h3{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
-.projeto p{font-size:15px;color:var(--apoio);margin-bottom:16px}
-.projeto .objetivo{
-  font-size:14px;padding-top:14px;border-top:1px solid var(--linha);color:var(--apoio);
-}
-.projeto .objetivo b{color:var(--texto);font-weight:600;display:block;margin-bottom:3px}
-
-/* ---------- bônus ---------- */
-.bonus{
-  border:1px solid var(--linha-forte);border-radius:22px;padding:36px 26px;
-  background:linear-gradient(168deg,rgba(255,77,46,.09),transparent 60%),var(--superficie-alta);
-}
-.bonus .etiqueta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--gradiente);color:#fff;
-  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:7px 14px;border-radius:999px;margin-bottom:22px;
-}
-.email-ruim{
-  font-family:var(--marca);font-size:clamp(16px,3.6vw,22px);
-  color:var(--apoio);text-decoration:line-through;
-  text-decoration-color:var(--laranja);text-decoration-thickness:2px;
-  display:inline-block;margin:6px 0 14px;
-}
-.email-bom{
-  font-family:var(--marca);font-size:clamp(16px,3.6vw,22px);
-  color:var(--texto);display:inline-block;margin:6px 0 14px;font-weight:500;
-}
-.bonus-itens{list-style:none;display:grid;gap:12px;margin-top:26px}
-.bonus-itens li{
-  display:grid;grid-template-columns:20px 1fr;gap:12px;font-size:16px;
-}
-.bonus-itens .marca{color:var(--verde);font-weight:700}
 
 /* ---------- preço ---------- */
 .preco-bloco{
@@ -411,19 +309,13 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   padding:36px 24px;max-width:600px;margin:0 auto;
   background:var(--superficie-alta);
 }
-.precos{
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;gap:10px;
-}
+.precos{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
 .col{text-align:center}
 .col .rot{
   font-size:11px;color:var(--apoio);text-transform:uppercase;
   letter-spacing:.1em;margin-bottom:12px;min-height:30px;line-height:1.35;
 }
-.valor{
-  font-family:var(--display);font-weight:800;
-  letter-spacing:-.04em;line-height:1;
-}
+.valor{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:1}
 .riscado .valor{
   font-size:clamp(24px,6.4vw,32px);color:var(--apoio);
   position:relative;display:inline-block;
@@ -445,17 +337,34 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   list-style:none;display:grid;gap:10px;margin-top:24px;
   padding-top:22px;border-top:1px solid var(--linha);
 }
-.preco-inclui li{
-  display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:15px;
-}
+.preco-inclui li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:15px}
 .preco-inclui .marca{color:var(--verde);font-weight:700}
 .preco-cta{text-align:center;margin-top:28px}
 .preco-etiqueta{font-size:13px;color:var(--apoio);margin-top:12px}
 .preco-etiqueta b{color:var(--texto);font-weight:600}
 
+/* bônus, agora dentro do bloco de preço */
+.bonus-dentro{margin-top:26px;padding-top:24px;border-top:1px solid var(--linha)}
+.bonus-dentro .etiqueta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gradiente);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 14px;border-radius:999px;margin-bottom:18px;
+}
+.bonus-dentro p{font-size:16px;line-height:1.55;margin-bottom:12px}
+.email-ruim{
+  font-family:var(--marca);font-size:clamp(15px,3.4vw,19px);
+  color:var(--apoio);text-decoration:line-through;
+  text-decoration-color:var(--laranja);text-decoration-thickness:2px;
+  display:inline-block;margin:4px 0 12px;
+}
+.bonus-dentro .remate{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(19px,3.8vw,24px);letter-spacing:-.02em;margin:16px 0;
+}
+
 /* Em telas estreitas as três colunas espremem o valor e ele quebra
-   no meio: a comparação passa a ser empilhada, com a seta apontando
-   para baixo. */
+   no meio: a comparação passa a ser empilhada. */
 @media (max-width:599px){
   .precos{grid-template-columns:1fr;gap:4px}
   .col .rot{min-height:0;margin-bottom:8px}
@@ -472,10 +381,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   border:1px solid var(--linha);border-radius:18px;overflow:hidden;
   background:var(--superficie-alta);
 }
-/* Para publicar um depoimento: troque a div.depo-video pelo <iframe> ou <video>
-   e substitua os textos de .depo-nome e .depo-papel. Nada mais precisa mudar. */
+/* Para publicar um depoimento: troque a div.depo-video pelo <iframe> ou
+   <video> e substitua os textos de .depo-nome e .depo-papel. */
 .depo-video{
-  aspect-ratio:9/13;position:relative;
+  aspect-ratio:9/12;position:relative;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
   background:repeating-linear-gradient(45deg,rgba(245,233,242,.03) 0 12px,transparent 12px 24px);
   border-bottom:1px solid var(--linha);
@@ -507,10 +416,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .vagas-numero .de{color:var(--apoio);font-size:.5em;letter-spacing:-.02em}
 .vagas-texto{font-size:15px;color:var(--apoio);margin-top:12px}
 .bolinhas{display:flex;gap:6px;justify-content:center;margin-top:22px;flex-wrap:wrap}
-.bolinhas i{
-  width:13px;height:13px;border-radius:50%;
-  background:var(--linha-forte);transition:background .3s ease;
-}
+.bolinhas i{width:13px;height:13px;border-radius:50%;background:var(--linha-forte)}
 .bolinhas i.livre{background:var(--amarelo)}
 .capacidade .btn{margin-top:26px}
 .encerrada .vagas-numero{color:var(--apoio)}
@@ -532,14 +438,12 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq .resposta{padding:0 36px 22px 0;color:var(--apoio);font-size:15px}
-.faq .resposta + .resposta{padding-top:0;margin-top:-8px}
 .faq .resposta b{color:var(--texto);font-weight:600}
 
 /* ---------- CTA final ---------- */
 .final{text-align:center}
 .final .fala{display:inline-block;text-align:left}
 .final .fala p{max-width:42ch}
-.final h2{max-width:20ch;margin-left:auto;margin-right:auto}
 .final .assinatura-conceito{
   font-family:var(--frase);font-style:italic;font-weight:700;
   font-size:clamp(19px,4.4vw,27px);line-height:1.35;
@@ -585,14 +489,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 @media (min-width:720px){
   .faixa{padding:104px 0}
   .faixa--alta{padding:128px 0}
-  .modelos{grid-template-columns:1fr 1fr;align-items:start}
   .etapas{grid-template-columns:1fr 1fr}
-  .projetos{grid-template-columns:1fr 1fr}
-  .depoimentos{grid-template-columns:repeat(3,1fr)}
-  .selos-detalhe{grid-template-columns:repeat(3,1fr)}
-  .consideracoes{grid-template-columns:1fr 1fr;gap:10px 26px}
+  .depoimentos{grid-template-columns:1fr 1fr}
+  .consideracoes{grid-template-columns:1fr 1fr;gap:11px 26px}
   .prazo{padding:52px 40px}
-  .bonus{padding:48px 40px}
   .capacidade{padding:40px 38px}
   .hero{padding:96px 0 104px}
   .piada{padding-left:28px}
@@ -612,7 +512,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </header>
 
-<!-- ============ 1-4. HERO, HEADLINE, CTA E SELOS ============ -->
+<!-- ============ HERO ============ -->
 <section class="hero" id="topo">
   <div class="container">
     <h1>
@@ -624,7 +524,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     <p class="sub"><strong>Eu penso na estratégia, desenvolvo a copy e construo uma página personalizada para o seu negócio.</strong></p>
 
     <a class="btn btn--principal" data-checkout href="#" data-origem="hero">Quero criar minha página</a>
-    <p class="btn-nota"><b style="color:var(--texto)">R$ 997</b> — contratação direta pelo checkout. Sem formulário, sem fila de espera para falar comigo.</p>
+    <p class="btn-nota"><b style="color:var(--texto)">R$ 997</b> — contratação direta pelo checkout.</p>
 
     <div class="selos">
       <span class="selo">
@@ -643,7 +543,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ 5. COPY PRINCIPAL / APRESENTAÇÃO ============ -->
+<!-- ============ APRESENTAÇÃO — bloco preservado ============ -->
 <section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <div class="retrato reveal">
@@ -673,7 +573,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ 6. PROVOCAÇÃO ============ -->
+<!-- ============ PROVOCAÇÃO ============ -->
 <section class="faixa">
   <div class="container container--estreito">
     <div class="fala">
@@ -693,14 +593,6 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
       <p class="solo"><span class="solo--gradiente">E é aqui que começa a diferença.</span></p>
 
-      <p>Você não está pagando por uma estrutura complexa, cheia de departamentos e mil demandas acontecendo ao mesmo tempo.</p>
-
-      <p>Está pagando pelo trabalho de quem vai <strong>pensar e construir a sua página do zero</strong>, de acordo com o seu produto, seu serviço e o seu negócio.</p>
-
-      <p class="apoio">E digo mais:</p>
-
-      <p class="curta">Com atenção.<br>Com tempo.<br>Com dedicação ao seu projeto.</p>
-
       <p>Porque seu negócio não é igual ao de todo mundo.</p>
       <p><strong>Então por que sua página deveria ser?</strong></p>
 
@@ -711,60 +603,38 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ 7. MODELO INDEPENDENTE X AGÊNCIA ============ -->
+<!-- ============ DOIS MODELOS — reescrito em diálogo ============ -->
 <section class="faixa faixa--fundo">
-  <div class="container">
+  <div class="container container--estreito">
     <p class="eyebrow">Dois modelos</p>
-    <h2 class="h-secao">Não é sobre agência boa ou ruim.<br>É sobre o que você precisa.</h2>
-
-    <div class="fala" style="margin-bottom:10px">
-      <p>Quando você contrata uma agência, não está contratando apenas quem cria sua página.</p>
-      <p>Você está contratando uma estrutura.</p>
-      <p class="curta">Equipe.<br>Departamentos.<br>Gestão.<br>Operação.<br>Custos.</p>
-      <p>E tudo isso tem seu valor.</p>
-      <p><strong>Mas a pergunta é: você precisa de tudo isso para criar a sua página?</strong></p>
-    </div>
-
-    <div class="modelos">
-      <div class="modelo modelo--agencia reveal">
-        <h3>O modelo tradicional</h3>
-        <ul>
-          <li><span class="marca" aria-hidden="true">—</span><span>Você fala com um atendimento</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>O atendimento fala com a gestão</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>A gestão distribui para a equipe</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Seu projeto divide espaço com outros dez</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Você paga também pela estrutura que sustenta tudo isso</span></li>
-        </ul>
-        <p class="fecho">Faz sentido para quem precisa de uma operação inteira. Talvez não seja o seu caso.</p>
-      </div>
-
-      <div class="modelo modelo--meu reveal">
-        <h3>Meu modelo é diferente</h3>
-        <ul>
-          <li><span class="marca" aria-hidden="true">—</span><span>Você fala comigo</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Eu entendo seu negócio</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Penso na estratégia</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Desenvolvo a copy</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Estruturo a experiência</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Construo a página</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Você acompanha</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>Ajustamos</span></li>
-          <li><span class="marca" aria-hidden="true">—</span><span>E sua página fica pronta</span></li>
-        </ul>
-        <p class="fecho">Uma pessoa. Do começo ao fim. Com o seu projeto na frente.</p>
-      </div>
-    </div>
-
-    <p class="solo">O diferencial não é ser mais barato.</p>
 
     <div class="fala">
-      <p>É ter contato direto.</p>
-      <p class="curta">Atenção.<br>Tempo.<br>Dedicação.<br>Personalização.<br>Estratégia.<br>Participação.</p>
+      <p class="curta">Por que uma agência custa mais?</p>
+
+      <p>Não é ganância.</p>
+      <p><strong>É estrutura.</strong></p>
+
+      <p>Você contrata o atendimento que fala com você, a gestão que organiza e a equipe que executa. Mais a operação que sustenta tudo isso de pé.</p>
+
+      <p>Tem valor? Tem.</p>
+
+      <p class="curta">Mas você precisa de tudo isso para criar a sua página?</p>
+
+      <p class="reticencias" aria-hidden="true">...</p>
+
+      <p>Comigo o caminho é mais curto.</p>
+      <p><strong>Você fala comigo. E é comigo que continua falando até a página ficar pronta.</strong></p>
+
+      <p>Sem intermediário. Sem repasse. Sem entrar na fila de outros dez projetos.</p>
+
+      <p class="curta">O diferencial não é o preço.</p>
+
+      <p>É que o seu projeto tem a minha atenção inteira — e não a sobra dela.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 8. ESTRATÉGIA E COPY PERSONALIZADA ============ -->
+<!-- ============ ESTRATÉGIA E COPY ============ -->
 <section class="faixa">
   <div class="container container--estreito">
     <p class="eyebrow">Antes do código</p>
@@ -779,70 +649,35 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
     <div class="fala">
       <p>Uma página não começa pelo código. Começa por uma decisão de estratégia: o que dizer, em que ordem, e para quem.</p>
-      <p>A copy é desenvolvida por mim, projeto a projeto. Nunca reaproveitada de outro cliente.</p>
     </div>
 
-    <p class="sub-secao" style="margin:38px 0 14px">Em cada projeto, o trabalho considera:</p>
+    <p class="sub-secao" style="margin:38px 0 14px">O que eu levanto antes de escrever a primeira linha:</p>
     <ul class="consideracoes">
-      <li><span class="marca" aria-hidden="true">—</span><span>O negócio</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>O produto ou serviço</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>O público-alvo</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>As dores</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Os desejos</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>As objeções</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Os diferenciais</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>O posicionamento</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>A proposta de valor</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>O objetivo da página</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>A jornada do visitante</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>A ação que queremos que o visitante realize</span></li>
+      <li><span class="marca" aria-hidden="true">—</span><span>O que você vende e para quem</span></li>
+      <li><span class="marca" aria-hidden="true">—</span><span>As dores e os desejos desse público</span></li>
+      <li><span class="marca" aria-hidden="true">—</span><span>As objeções que travam a decisão</span></li>
+      <li><span class="marca" aria-hidden="true">—</span><span>O que diferencia você dos concorrentes</span></li>
+      <li><span class="marca" aria-hidden="true">—</span><span>A ação que a página precisa provocar</span></li>
     </ul>
-
-    <div class="fala" style="margin-top:42px">
-      <p>A página não é criada preenchendo um template.</p>
-      <p>A copy não é genérica.</p>
-      <p>A estratégia não é copiada de outro projeto.</p>
-      <p class="curta">Cada projeto é pensado individualmente.</p>
-    </div>
   </div>
 </section>
 
-<!-- ============ 9. PERSONALIZAÇÃO ============ -->
+<!-- ============ COMO FUNCIONA — reescrito em diálogo, 5 passos ============ -->
 <section class="faixa faixa--fundo">
-  <div class="container container--estreito">
-    <h2 class="h-secao">Seu negócio é único.<br>Sua página também deveria ser.</h2>
-
-    <p class="sub-secao" style="margin-bottom:16px">Cada projeto considera:</p>
-    <ul class="consideracoes">
-      <li><span class="marca" aria-hidden="true">—</span><span>Objetivo</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Público</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Posicionamento</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Identidade visual</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Oferta</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Jornada do cliente</span></li>
-      <li><span class="marca" aria-hidden="true">—</span><span>Estratégia de conversão</span></li>
-    </ul>
-
-    <div class="fala" style="margin-top:44px">
-      <p>Você não recebe apenas uma página pronta.</p>
-      <p class="curta">Você participa de um processo de criação pensado para o seu negócio.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 10. COMO FUNCIONA ============ -->
-<section class="faixa">
   <div class="container">
     <p class="eyebrow">Passo a passo</p>
-    <h2 class="h-secao">Como funciona?</h2>
-    <p class="sub-secao">Da contratação à entrega, sem etapa escondida.</p>
+
+    <div class="fala" style="margin-bottom:38px">
+      <p class="curta">E como isso acontece na prática?</p>
+      <p>Cinco passos. Nenhum escondido.</p>
+    </div>
 
     <div class="etapas">
       <div class="etapa">
         <span class="num" aria-hidden="true">01</span>
         <div>
-          <h3>Contratação</h3>
-          <p>Você escolhe o serviço e realiza o pagamento diretamente pelo checkout.</p>
+          <h3>Você contrata</h3>
+          <p>Pagamento direto pelo checkout. Sem proposta, sem reunião de vendas.</p>
           <a class="btn btn--principal" data-checkout href="#" data-origem="etapa-01">Contratar minha página</a>
         </div>
       </div>
@@ -850,94 +685,47 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       <div class="etapa">
         <span class="num" aria-hidden="true">02</span>
         <div>
-          <h3>E-mail de confirmação</h3>
-          <p>Após a confirmação do pagamento, você recebe um e-mail com o link para agendar sua reunião de briefing.</p>
+          <h3>Você agenda o briefing</h3>
+          <p>Confirmado o pagamento, chega um e-mail com o link da minha agenda. Você escolhe o horário.</p>
         </div>
       </div>
 
       <div class="etapa">
         <span class="num" aria-hidden="true">03</span>
         <div>
-          <h3>Briefing</h3>
-          <p>Você agenda o melhor horário disponível e conversamos para entender seu negócio, seu público, sua oferta e os objetivos da sua página.</p>
+          <h3>A gente conversa</h3>
+          <p>Aqui eu entendo o seu negócio, o seu público e o que a página precisa fazer acontecer.</p>
         </div>
       </div>
 
       <div class="etapa">
         <span class="num" aria-hidden="true">04</span>
         <div>
-          <h3>Estratégia e copy</h3>
-          <p>Com as informações do briefing, eu penso estrategicamente na estrutura da página e desenvolvo a copy de acordo com o seu negócio.</p>
+          <h3>Você me envia o material</h3>
+          <p>Depois do briefing eu mando a lista exata do seu caso. Em geral:</p>
+          <ul class="materiais">
+            <li>Logotipo</li>
+            <li>Identidade visual</li>
+            <li>Imagens e vídeos</li>
+            <li>Informações de produtos ou serviços</li>
+            <li>Contatos, links e redes</li>
+          </ul>
         </div>
       </div>
 
       <div class="etapa">
         <span class="num" aria-hidden="true">05</span>
         <div>
-          <h3>Envio das informações</h3>
-          <p>Após o briefing, você envia os materiais necessários para o desenvolvimento.</p>
-          <ul class="materiais">
-            <li>Logotipo</li>
-            <li>Identidade visual</li>
-            <li>Imagens</li>
-            <li>Vídeos</li>
-            <li>Informações sobre produtos ou serviços</li>
-            <li>Contatos</li>
-            <li>Links</li>
-            <li>Redes sociais</li>
-            <li>Outros materiais necessários</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="etapa">
-        <span class="num" aria-hidden="true">06</span>
-        <div>
-          <h3>Desenvolvimento</h3>
-          <p>A página é construída de forma personalizada.</p>
-        </div>
-      </div>
-
-      <div class="etapa etapa--destaque">
-        <span class="num" aria-hidden="true">07</span>
-        <div>
-          <h3>Prazo de até 7 dias úteis</h3>
-          <p>O prazo de produção é de <b>até 7 dias úteis após o recebimento de todas as informações e materiais necessários</b> para o desenvolvimento.</p>
-        </div>
-      </div>
-
-      <div class="etapa">
-        <span class="num" aria-hidden="true">08</span>
-        <div>
-          <h3>Entrega</h3>
-          <p>Após o desenvolvimento, a página é apresentada para revisão e são realizados os ajustes previstos no projeto.</p>
+          <h3>Eu construo e entrego</h3>
+          <p>Estratégia, copy e página. Você revisa, ajustamos o que estiver previsto, e a página vai ao ar.</p>
         </div>
       </div>
     </div>
-
-    <!-- O que acontece após o pagamento -->
-    <h3 class="h-secao" style="font-size:clamp(22px,4.4vw,30px);margin:64px 0 20px">O que acontece depois do pagamento</h3>
-    <ol class="fluxo">
-      <li><span class="n">01</span><span>Você realiza o pagamento no checkout</span></li>
-      <li><span class="n">02</span><span>O pagamento é confirmado</span></li>
-      <li><span class="n">03</span><span>Você recebe um e-mail de confirmação</span></li>
-      <li><span class="n">04</span><span>O e-mail traz o link para agendar o briefing</span></li>
-      <li><span class="n">05</span><span>Você agenda a reunião</span></li>
-      <li><span class="n">06</span><span>O briefing é realizado</span></li>
-      <li><span class="n">07</span><span>Você recebe as orientações para enviar os materiais</span></li>
-      <li><span class="n">08</span><span>Você envia todas as informações necessárias</span></li>
-      <li class="marco"><span class="n">09</span><span>Aqui começa a contar o prazo de até 7 dias úteis</span></li>
-      <li><span class="n">10</span><span>A estratégia e a copy são desenvolvidas</span></li>
-      <li><span class="n">11</span><span>A página é construída</span></li>
-      <li><span class="n">12</span><span>A página é apresentada para revisão</span></li>
-      <li><span class="n">13</span><span>São realizados os ajustes previstos</span></li>
-      <li><span class="n">14</span><span>O projeto é entregue</span></li>
-    </ol>
   </div>
 </section>
 
-<!-- ============ 11. PRAZO ============ -->
-<section class="faixa faixa--fundo">
+<!-- ============ PRAZO — bloco preservado ============ -->
+<section class="faixa">
   <div class="container container--estreito">
     <div class="prazo reveal">
       <p class="numero">7</p>
@@ -955,89 +743,24 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       <p>Você pagou hoje.</p>
       <p>Isso não significa que o cronômetro dos 7 dias úteis começou a correr.</p>
       <p><strong>Calma.</strong></p>
-      <p>Ainda precisamos conversar, entender seu negócio, pensar na estratégia, desenvolver a copy e receber as informações necessárias.</p>
       <p>O relógio começa quando eu tiver tudo o que preciso para trabalhar.</p>
       <p class="remate">Porque, infelizmente, ainda não descobrimos como criar uma página profissional usando telepatia.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 12. PORTFÓLIO ============ -->
-<section class="faixa">
-  <div class="container">
-    <p class="eyebrow">Portfólio</p>
-    <h2 class="h-secao">Projetos entregues</h2>
-    <p class="sub-secao">Negócios diferentes, páginas diferentes. Nenhuma seção em comum.</p>
-
-    <div class="projetos">
-      <article class="projeto reveal">
-        <div class="barra" aria-hidden="true"><i></i><i></i><i></i></div>
-        <!-- Trocar esta div pela imagem real: <img src="img/adilio-terra.jpg" alt="Página do Adilio Terra"> -->
-        <div class="tela">Espaço reservado para a captura da página do Adilio Terra</div>
-        <div class="corpo">
-          <p class="segmento">Advocacia imobiliária</p>
-          <h3>Adilio Terra</h3>
-          <p>Presença on-line dispersa entre redes sociais, sem um endereço que apresentasse a especialidade. Construí uma página única que explica a atuação e conduz ao contato direto.</p>
-          <p class="objetivo"><b>Objetivo da página</b>Apresentar a especialidade e levar o visitante ao contato direto com o escritório.</p>
-        </div>
-      </article>
-
-      <article class="projeto reveal">
-        <div class="barra" aria-hidden="true"><i></i><i></i><i></i></div>
-        <!-- Trocar esta div pela imagem real: <img src="img/planni.jpg" alt="Página do Planni"> -->
-        <div class="tela">Espaço reservado para a captura da página do Planni</div>
-        <div class="corpo">
-          <p class="segmento">Aplicativo de finanças pessoais</p>
-          <h3>Planni</h3>
-          <p>Produto próprio, do conceito à publicação: página de vendas, integração de pagamento e área de assinatura. Construído por mim de ponta a ponta.</p>
-          <p class="objetivo"><b>Objetivo da página</b>Explicar o aplicativo e converter o visitante em assinante.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 13. BÔNUS ============ -->
-<section class="faixa faixa--fundo">
-  <div class="container container--estreito">
-    <div class="bonus reveal">
-      <span class="etiqueta">Bônus incluso</span>
-      <h2 class="h-secao">Domínio próprio e e-mail profissional</h2>
-
-      <div class="fala">
-        <p>Você acabou de criar uma página profissional.</p>
-        <p>Agora imagine enviar seu primeiro orçamento usando:</p>
-      </div>
-
-      <p class="email-ruim">seunome123@gmail.com</p>
-      <br>
-      <p class="email-bom">contato@seunegocio.com.br</p>
-
-      <div class="fala" style="margin-top:10px">
-        <p class="curta">Não combina muito, né?</p>
-        <p>Por isso, sua contratação inclui como bônus a criação de domínio próprio e um e-mail profissional.</p>
-      </div>
-
-      <ul class="bonus-itens">
-        <li><span class="marca" aria-hidden="true">✓</span><span><strong>Domínio próprio</strong> — registrado em seu nome</span></li>
-        <li><span class="marca" aria-hidden="true">✓</span><span><strong>E-mail profissional</strong> — no seu domínio, não no gmail</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PREÇO ============
+<!-- ============ PREÇO + BÔNUS ============
      Os dois valores abaixo são os únicos números de preço da página.
      O valor de referência da agência deve refletir o que você realmente
      observa no mercado — troque-o aqui se a sua leitura for outra. -->
-<section class="faixa">
+<section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <p class="eyebrow">O investimento</p>
-    <h2 class="h-secao">Quanto custa?</h2>
 
     <div class="fala" style="margin-bottom:38px">
+      <p class="curta">Quanto custa?</p>
       <p>Uma agência cobra pela estrutura inteira.</p>
-      <p class="curta">Eu cobro pelo trabalho.</p>
+      <p><strong>Eu cobro pelo trabalho.</strong></p>
     </div>
 
     <div class="preco-bloco reveal">
@@ -1057,30 +780,35 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       <p class="preco-tese">A diferença não está no cuidado com o seu projeto.<br>Está em <b>tudo o que você deixa de pagar no meio do caminho.</b></p>
 
       <ul class="preco-inclui">
-        <li><span class="marca" aria-hidden="true">✓</span><span>Estratégia pensada para o seu negócio</span></li>
-        <li><span class="marca" aria-hidden="true">✓</span><span>Copy desenvolvida por mim, do zero</span></li>
-        <li><span class="marca" aria-hidden="true">✓</span><span>Página construída de forma personalizada</span></li>
+        <li><span class="marca" aria-hidden="true">✓</span><span>Estratégia, copy e página construídas para o seu negócio</span></li>
         <li><span class="marca" aria-hidden="true">✓</span><span>Revisão e ajustes previstos no projeto</span></li>
-        <li><span class="marca" aria-hidden="true">✓</span><span>Bônus: domínio próprio e e-mail profissional</span></li>
       </ul>
+
+      <div class="bonus-dentro">
+        <span class="etiqueta">Bônus incluso</span>
+        <p>Você acabou de criar uma página profissional. Agora imagine enviar seu primeiro orçamento usando:</p>
+        <p class="email-ruim">seunome123@gmail.com</p>
+        <p class="remate">Não combina muito, né?</p>
+        <p>Por isso a contratação inclui <b>domínio próprio, registrado em seu nome, e um e-mail profissional</b> nesse domínio.</p>
+      </div>
 
       <div class="preco-cta">
         <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="preco">Quero criar minha página</a>
-        <p class="preco-etiqueta">Contratação direta pelo checkout. <b>Até 10 projetos por mês.</b></p>
+        <p class="preco-etiqueta">Contratação direta pelo checkout.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 14. DEPOIMENTOS EM VÍDEO ============ -->
+<!-- ============ DEPOIMENTOS EM VÍDEO — 2 espaços ============ -->
 <section class="faixa">
-  <div class="container">
+  <div class="container container--estreito">
     <p class="eyebrow">Prova social</p>
     <h2 class="h-secao">Veja o que quem já passou pelo processo tem a dizer.</h2>
     <p class="sub-secao">Os depoimentos em vídeo estão sendo gravados e entram aqui assim que ficarem prontos.</p>
 
     <div class="depoimentos">
-      <!-- DEPOIMENTO 01 — substituir .depo-video pelo vídeo e preencher nome e papel -->
+      <!-- DEPOIMENTO 01 — trocar .depo-video pelo vídeo e preencher nome e papel -->
       <figure class="depo reveal">
         <div class="depo-video">
           <span class="depo-play" aria-hidden="true">
@@ -1094,7 +822,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
         </figcaption>
       </figure>
 
-      <!-- DEPOIMENTO 02 — substituir .depo-video pelo vídeo e preencher nome e papel -->
+      <!-- DEPOIMENTO 02 — trocar .depo-video pelo vídeo e preencher nome e papel -->
       <figure class="depo reveal">
         <div class="depo-video">
           <span class="depo-play" aria-hidden="true">
@@ -1107,25 +835,11 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
           <p class="depo-papel">[ PROFISSÃO OU EMPRESA ]</p>
         </figcaption>
       </figure>
-
-      <!-- DEPOIMENTO 03 — substituir .depo-video pelo vídeo e preencher nome e papel -->
-      <figure class="depo reveal">
-        <div class="depo-video">
-          <span class="depo-play" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-          <span class="depo-rotulo">Vídeo de depoimento<br>Placeholder 03</span>
-        </div>
-        <figcaption class="depo-corpo">
-          <p class="depo-nome">[ NOME DO CLIENTE ]</p>
-          <p class="depo-papel">[ PROFISSÃO OU EMPRESA ]</p>
-        </figcaption>
-      </figure>
     </div>
   </div>
 </section>
 
-<!-- ============ 15-17. CAPACIDADE, VAGAS E CTA ============ -->
+<!-- ============ CAPACIDADE E VAGAS ============ -->
 <section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <p class="eyebrow">Capacidade</p>
@@ -1134,182 +848,82 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       <p>Eu poderia aceitar dezenas de projetos.</p>
       <p>Mas aí existe um pequeno problema.</p>
       <p class="curta">O modelo deixaria de ser personalizado.</p>
-      <p>Se eu aceitar 30 projetos ao mesmo tempo, provavelmente vou precisar começar a fazer exatamente aquilo que estou tentando evitar:</p>
+      <p>Aceitando projeto demais ao mesmo tempo, eu precisaria fazer exatamente o que estou tentando evitar:</p>
       <p class="curta">virar uma agência.</p>
     </div>
 
-    <p class="solo"><span class="solo--gradiente">Minha capacidade é de até 10 páginas por mês.</span></p>
-
-    <p class="sub-secao">Não é escassez de marketing. É o número real de projetos que consigo atender dando a cada um o tempo que ele precisa.</p>
+    <p class="solo"><span class="solo--gradiente">Minha capacidade é de até 8 páginas por mês.</span></p>
 
     <div class="capacidade" id="bloco-vagas">
       <p class="eyebrow eyebrow--apoio" style="margin-bottom:12px">Agenda deste mês</p>
-      <p class="vagas-numero"><span id="vagas-livres">–</span><span class="de"> de 10</span></p>
+      <p class="vagas-numero"><span id="vagas-livres">3</span><span class="de"> de <span id="vagas-total">8</span></span></p>
       <p class="vagas-texto" id="vagas-texto">vagas disponíveis este mês</p>
-      <div class="bolinhas" id="vagas-bolinhas" aria-hidden="true"></div>
+      <div class="bolinhas" id="vagas-bolinhas" aria-hidden="true">
+        <i class="livre"></i><i class="livre"></i><i class="livre"></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
       <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="vagas" id="cta-vagas">Quero garantir minha vaga</a>
       <p class="preco-etiqueta"><b>R$ 997</b> — contratação direta pelo checkout</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 18. SEGURANÇA E GARANTIA ============ -->
+<!-- ============ FAQ — só o que não foi respondido no corpo ============ -->
 <section class="faixa">
-  <div class="container">
-    <p class="eyebrow">Segurança</p>
-    <h2 class="h-secao">Contrate com tranquilidade</h2>
-
-    <div class="selos-detalhe">
-      <div class="selo-card reveal">
-        <span class="icone" aria-hidden="true">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </span>
-        <h3>Site 100% seguro</h3>
-        <p>Seus dados e informações são tratados com segurança.</p>
-      </div>
-
-      <div class="selo-card reveal">
-        <span class="icone" aria-hidden="true">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-        </span>
-        <h3>Pagamento seguro</h3>
-        <p>Seu pagamento é realizado em ambiente seguro de checkout.</p>
-      </div>
-
-      <div class="selo-card reveal">
-        <span class="icone" aria-hidden="true">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 10l-4.5 4.5L8 11.5"/></svg>
-        </span>
-        <h3>7 dias de garantia legal</h3>
-        <p>Você conta com o prazo legal aplicável às compras realizadas pela internet para solicitar o reembolso, conforme a legislação vigente.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 19. FAQ ============ -->
-<section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <p class="eyebrow">Antes de você perguntar</p>
     <h2 class="h-secao">Perguntas frequentes</h2>
 
     <div class="faq">
       <details>
-        <summary>A página é personalizada?</summary>
-        <p class="resposta">Sim. Cada página é construída do zero, a partir do seu negócio. Não parto de um template pronto com as cores trocadas.</p>
-      </details>
-      <details>
-        <summary>A copy é personalizada?</summary>
-        <p class="resposta">Sim. Escrevo a copy especificamente para o seu projeto, com base no que levantamos no briefing. Nada é reaproveitado de outro cliente.</p>
-      </details>
-      <details>
-        <summary>Quem desenvolve minha página?</summary>
-        <p class="resposta">Eu, o Vitor. Não há equipe intermediária, nem repasse para terceiros.</p>
-      </details>
-      <details>
-        <summary>Quem pensa na estratégia e na copy?</summary>
-        <p class="resposta">Também eu. Estratégia, copy, estrutura e construção são a mesma pessoa — é isso que mantém o projeto coerente do início ao fim.</p>
-      </details>
-      <details>
-        <summary>Posso participar da criação?</summary>
-        <p class="resposta">Pode, e é o esperado. Você participa do briefing, acompanha o desenvolvimento e revisa a página antes da entrega.</p>
-      </details>
-      <details>
         <summary>Preciso saber programação?</summary>
         <p class="resposta">Não. Você só precisa conhecer o seu negócio. A parte técnica é comigo.</p>
       </details>
       <details>
         <summary>Posso solicitar alterações?</summary>
-        <p class="resposta">Sim. Após a apresentação da página são realizados os ajustes previstos no projeto. O que estiver previsto é combinado com você antes do início do desenvolvimento.</p>
+        <p class="resposta">Sim. Uma rodada de ajustes está prevista no projeto, feita depois que você revisa a página. Alterações além disso são orçadas à parte, e eu combino o valor antes de executar.</p>
       </details>
       <details>
-        <summary>Qual é o prazo de desenvolvimento?</summary>
-        <p class="resposta">Até 7 dias úteis.</p>
+        <summary>E se o resultado não me agradar?</summary>
+        <p class="resposta">Você participa do briefing e revisa a página antes da entrega, justamente para que isso não aconteça no fim. Se ainda assim algo estiver fora, é para isso que existe a rodada de ajustes.</p>
       </details>
       <details>
-        <summary>Quando começa a contar o prazo de 7 dias úteis?</summary>
-        <p class="resposta">Somente após o recebimento de <b>todas</b> as informações e materiais necessários para o desenvolvimento.</p>
+        <summary>De quem é o domínio e o e-mail?</summary>
+        <p class="resposta">Seus. Registro tudo em seu nome. Você não depende de mim para manter a página no ar nem para acessar o seu e-mail.</p>
       </details>
       <details>
-        <summary>O prazo começa no pagamento?</summary>
-        <p class="resposta">Não. Entre o pagamento e o início do prazo acontecem o briefing e o envio dos seus materiais. O relógio só começa quando eu tenho tudo o que preciso para trabalhar.</p>
+        <summary>Já tenho site. Faz sentido?</summary>
+        <p class="resposta">Faz, e costuma ser o melhor cenário. A landing page trabalha ao lado do site institucional, com uma função diferente: levar o visitante a uma única ação.</p>
       </details>
       <details>
-        <summary>O que acontece depois do pagamento?</summary>
-        <p class="resposta">Você recebe um e-mail de confirmação com o link para agendar a reunião de briefing. A partir daí seguimos o passo a passo descrito na seção "Como funciona".</p>
-      </details>
-      <details>
-        <summary>Como recebo o link para agendar o briefing?</summary>
-        <p class="resposta">Por e-mail, assim que o pagamento é confirmado. O e-mail vai para o endereço informado no checkout.</p>
-      </details>
-      <details>
-        <summary>O que preciso enviar para começar?</summary>
-        <p class="resposta">Logotipo, identidade visual, imagens, vídeos, informações sobre produtos ou serviços, contatos, links, redes sociais e outros materiais necessários ao projeto. Depois do briefing eu envio a lista exata para o seu caso.</p>
-      </details>
-      <details>
-        <summary>Quanto custa?</summary>
-        <p class="resposta">R$ 997, com o escopo descrito na página. Se o seu projeto exigir algo fora dele, eu informo antes de começar — não depois.</p>
-      </details>
-      <details>
-        <summary>Por que custa menos do que uma agência?</summary>
-        <p class="resposta">Porque não existe estrutura entre nós. Não há atendimento, gestão, departamentos nem equipe para sustentar. Você paga pelo trabalho de quem pensa e constrói a sua página, e não pela operação que uma agência precisa manter de pé.</p>
-      </details>
-      <details>
-        <summary>O que está incluído?</summary>
-        <p class="resposta">Estratégia, copy, estrutura e construção da página personalizada, além do bônus de domínio próprio e e-mail profissional. A revisão e os ajustes previstos também estão inclusos.</p>
-      </details>
-      <details>
-        <summary>O e-mail profissional está incluído?</summary>
-        <p class="resposta">Sim. O domínio próprio e o e-mail profissional entram como bônus da contratação.</p>
-      </details>
-      <details>
-        <summary>Quantos projetos são aceitos por mês?</summary>
-        <p class="resposta">Até 10. É o limite real que me permite dedicar tempo a cada projeto.</p>
-      </details>
-      <details>
-        <summary>Como funciona a atualização das vagas?</summary>
-        <p class="resposta">O número exibido na página corresponde às vagas ainda disponíveis no mês corrente e diminui conforme os projetos são contratados.</p>
+        <summary>Você aceita qualquer tipo de negócio?</summary>
+        <p class="resposta">Se o seu caso não for adequado ao que eu entrego, eu digo antes de você contratar. Não ocupo o seu tempo nem o meu.</p>
       </details>
       <details>
         <summary>O que acontece se as vagas acabarem?</summary>
-        <p class="resposta">A agenda do mês é encerrada e o botão passa a ser o de lista de espera. Assim que abre a agenda do mês seguinte, quem está na lista é avisado primeiro.</p>
+        <p class="resposta">A agenda do mês é encerrada e o botão passa a ser o de lista de espera. Quando abre a agenda do mês seguinte, quem está na lista é avisado primeiro.</p>
       </details>
       <details>
         <summary>Como funciona a garantia legal de 7 dias?</summary>
-        <p class="resposta">Compras feitas pela internet contam com o prazo de arrependimento previsto na legislação vigente. Dentro desse prazo e nas condições previstas em lei, você pode solicitar o reembolso.</p>
-      </details>
-      <details>
-        <summary>Como solicitar o reembolso?</summary>
-        <p class="resposta">Basta me enviar a solicitação pelo e-mail de contato informado no rodapé, dentro do prazo legal. Cuido do restante com você.</p>
+        <p class="resposta">Compras feitas pela internet contam com o prazo de arrependimento previsto na legislação vigente. Dentro desse prazo e nas condições previstas em lei, você pode solicitar o reembolso — basta me enviar a solicitação pelo e-mail do rodapé.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ============ 20-21. CTA FINAL E SELOS ============ -->
-<section class="faixa faixa--alta final">
+<!-- ============ CTA FINAL ============ -->
+<section class="faixa faixa--alta final faixa--fundo">
   <div class="container container--estreito">
     <div class="fala">
       <p>Você não precisa necessariamente de uma agência inteira.</p>
       <p>Não precisa de uma equipe enorme.</p>
-      <p>Não precisa pagar por uma estrutura que talvez nem precise.</p>
       <p class="curta">Talvez você só precise de alguém que entenda o que você quer.</p>
-      <p>Que pense na estratégia.</p>
-      <p>Que desenvolva a copy.</p>
-      <p>Que construa a página.</p>
       <p><strong>E que tenha tempo para fazer isso com você.</strong></p>
     </div>
 
     <p class="assinatura-conceito">Um profissional. Uma estratégia. Uma página feita para você.</p>
 
-    <div class="fala" style="margin-top:34px">
-      <p>Eu crio até 10 páginas por mês.</p>
-      <p>Se ainda existe uma vaga disponível...</p>
-      <p class="curta">Talvez seja a hora de começar.</p>
-    </div>
-
     <p class="vagas-texto" style="margin-top:32px;font-size:16px">
-      Vagas disponíveis neste mês: <b id="vagas-livres-final">–</b> de 10
+      Vagas disponíveis neste mês: <b id="vagas-livres-final">3</b> de <span id="vagas-total-final">8</span>
     </p>
 
     <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="cta-final" id="cta-final" style="margin-top:20px">Quero criar minha página</a>
@@ -1334,14 +948,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ 22. RODAPÉ ============ -->
+<!-- ============ RODAPÉ ============ -->
 <footer class="rodape">
   <div class="container linha">
     <div>
       <span class="marca-rodape">VRC</span> — landingPages
     </div>
     <div>
-      <a href="mailto:vitor.rscarv@gmail.com" id="email-contato">vitor.rscarv@gmail.com</a>
+      <a href="mailto:vitor.rscarv@gmail.com">vitor.rscarv@gmail.com</a>
     </div>
   </div>
 </footer>
@@ -1355,54 +969,21 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 (function(){
   'use strict';
 
-  /* ================================================================
-     CONFIGURAÇÃO — todos os links e números editáveis ficam aqui.
-     Nenhuma URL de checkout deve ser escrita em outro lugar do código.
-     ================================================================ */
-  var CONFIG = {
-    /* Link do checkout. Todos os botões de contratação usam este valor. */
-    CHECKOUT_URL: "INSERIR_URL_DO_CHECKOUT_AQUI",
-
-    /* Link de agendamento do briefing, usado no e-mail pós-pagamento
-       (ver arquivo email-confirmacao.html). */
-    BOOKING_URL: "INSERIR_URL_DE_AGENDAMENTO_AQUI",
-
-    /* Para onde o botão aponta quando a agenda do mês está encerrada. */
-    LISTA_ESPERA_URL: "INSERIR_URL_DA_LISTA_DE_ESPERA_AQUI",
-
-    /* Capacidade real de produção mensal. */
-    VAGAS_TOTAL: 10,
-
-    /* Projetos já contratados no mês corrente.
-       Use este número enquanto não houver a fonte automática abaixo. */
-    VAGAS_OCUPADAS: 0,
-
-    /* Opcional: endereço que devolve o número real de contratações do mês,
-       no formato {"ocupadas": 3}. Preenchido, ele tem prioridade sobre
-       VAGAS_OCUPADAS e mantém o contador sempre atualizado. */
-    VAGAS_API: ""
-  };
-
+  /* A configuração fica no <head>, no topo do arquivo. */
+  var CONFIG = window.VRC;
   var NAO_CONFIGURADO = /^INSERIR_/;
 
   /* ---------- CTAs de checkout ---------- */
-  var botoes = document.querySelectorAll('[data-checkout]');
-
-  function aplicarDestino(url){
-    botoes.forEach(function(a){
-      if (NAO_CONFIGURADO.test(url)){
-        /* Enquanto a URL não for preenchida, o botão não navega para um
-           endereço quebrado — apenas avisa no console de quem edita. */
-        a.setAttribute('href', '#');
-        a.dataset.pendente = '1';
-      } else {
-        a.setAttribute('href', url);
-        delete a.dataset.pendente;
-      }
-    });
-  }
-
-  aplicarDestino(CONFIG.CHECKOUT_URL);
+  document.querySelectorAll('[data-checkout]').forEach(function(a){
+    if (NAO_CONFIGURADO.test(CONFIG.CHECKOUT_URL)){
+      /* Enquanto a URL não for preenchida, o botão não navega para um
+         endereço quebrado — apenas avisa no console de quem edita. */
+      a.setAttribute('href', '#');
+      a.dataset.pendente = '1';
+    } else {
+      a.setAttribute('href', CONFIG.CHECKOUT_URL);
+    }
+  });
 
   document.addEventListener('click', function(e){
     var a = e.target.closest('[data-checkout]');
@@ -1410,7 +991,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
     if (a.dataset.pendente){
       e.preventDefault();
-      console.warn('[VRC] Configure CHECKOUT_URL no início do script para ativar os botões de contratação.');
+      console.warn('[VRC] Configure CHECKOUT_URL no topo do arquivo para ativar os botões.');
       return;
     }
 
@@ -1421,36 +1002,43 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     if (typeof fbq === 'function'){ fbq('track', 'InitiateCheckout', { origem: origem }); }
   });
 
-  /* ---------- contador de vagas ---------- */
-  var elLivres    = document.getElementById('vagas-livres');
-  var elLivresFim = document.getElementById('vagas-livres-final');
-  var elTexto     = document.getElementById('vagas-texto');
-  var elBolinhas  = document.getElementById('vagas-bolinhas');
-  var elBloco     = document.getElementById('bloco-vagas');
-  var ctaVagas    = document.getElementById('cta-vagas');
-  var ctaFinal    = document.getElementById('cta-final');
-  var ctaFixo     = document.getElementById('cta-fixo');
+  /* ---------- contador de vagas ----------
+     Os números já vêm escritos no HTML, então a página mostra o valor
+     certo mesmo se o script não rodar. Daqui para baixo é só
+     atualização. */
+  function texto(id, valor){
+    var el = document.getElementById(id);
+    if (el) el.textContent = valor;
+  }
 
   function pintarVagas(ocupadas){
     var total  = CONFIG.VAGAS_TOTAL;
     var livres = Math.max(0, Math.min(total, total - ocupadas));
 
-    if (elLivres)    elLivres.textContent = livres;
-    if (elLivresFim) elLivresFim.textContent = livres;
+    texto('vagas-livres', livres);
+    texto('vagas-livres-final', livres);
+    texto('vagas-total', total);
+    texto('vagas-total-final', total);
 
-    if (elBolinhas){
-      elBolinhas.innerHTML = '';
+    var caixa = document.getElementById('vagas-bolinhas');
+    if (caixa){
+      caixa.innerHTML = '';
       for (var i = 0; i < total; i++){
         var b = document.createElement('i');
         if (i < livres) b.className = 'livre';
-        elBolinhas.appendChild(b);
+        caixa.appendChild(b);
       }
     }
 
+    var elTexto = document.getElementById('vagas-texto');
+
     if (livres === 0){
       if (elTexto) elTexto.textContent = 'Agenda deste mês encerrada.';
-      if (elBloco) elBloco.classList.add('encerrada');
-      [ctaVagas, ctaFinal, ctaFixo].forEach(function(a){
+      var bloco = document.getElementById('bloco-vagas');
+      if (bloco) bloco.classList.add('encerrada');
+
+      ['cta-vagas','cta-final','cta-fixo'].forEach(function(id){
+        var a = document.getElementById(id);
         if (!a) return;
         a.textContent = 'Entrar na lista de espera';
         a.removeAttribute('data-checkout');
@@ -1467,7 +1055,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
   pintarVagas(CONFIG.VAGAS_OCUPADAS);
 
-  /* Se houver uma fonte automática configurada, ela substitui o número
+  /* Se houver fonte automática configurada, ela substitui o número
      manual assim que responder. */
   if (CONFIG.VAGAS_API){
     fetch(CONFIG.VAGAS_API, { cache: 'no-store' })
@@ -1475,7 +1063,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       .then(function(dados){
         if (dados && typeof dados.ocupadas === 'number') pintarVagas(dados.ocupadas);
       })
-      .catch(function(){ /* mantém o número manual se a consulta falhar */ });
+      .catch(function(){ /* mantém o número do HTML se a consulta falhar */ });
   }
 
   /* ---------- revelação suave ao rolar ---------- */
