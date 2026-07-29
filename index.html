@@ -39,6 +39,10 @@ window.VRC = {
 };
 </script>
 
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FF4D2E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
@@ -178,9 +182,11 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   align-items:center;gap:12px;
 }
 .lockup{
-  display:inline-flex;flex-direction:column;gap:4px;
-  text-decoration:none;justify-self:start;
+  display:inline-flex;align-items:center;gap:11px;
+  text-decoration:none;justify-self:start;color:#fff;
 }
+.lockup .simbolo{flex:none;display:block}
+.lockup .texto{display:inline-flex;flex-direction:column;gap:4px}
 .lockup .sigla{
   font-family:var(--marca);font-weight:700;font-size:26px;
   letter-spacing:-.02em;line-height:1;color:#fff;
@@ -198,7 +204,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 @media (max-width:559px){
   .topo .container{grid-template-columns:1fr;justify-items:center;gap:10px}
-  .lockup{justify-self:center;align-items:center}
+  .lockup{justify-self:center}
   .chamada-topo{grid-column:1}
 }
 
@@ -516,8 +522,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 <header class="topo">
   <div class="container">
     <a class="lockup" href="#topo" aria-label="VRC, landing pages">
-      <span class="sigla">VRC</span>
-      <span class="sublinha">landingPages</span>
+      <svg class="simbolo" width="34" height="34" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path d="M11 17 L30 47 L56 8" fill="none" stroke="currentColor"
+              stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="texto">
+        <span class="sigla">VRC</span>
+        <span class="sublinha">landingPages</span>
+      </span>
     </a>
     <p class="chamada-topo">Páginas espetaculares</p>
   </div>

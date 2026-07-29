@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="VRC">
+  <defs>
+    <linearGradient id="vrc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF4D2E"/>
+      <stop offset="1" stop-color="#D62BC4"/>
+    </linearGradient>
+  </defs>
+  <path d="M11 17 L30 47 L56 8" fill="none" stroke="url(#vrc)"
+        stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
