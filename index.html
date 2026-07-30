@@ -4,32 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VRC — Uma landing page espetacular, sem pagar por uma agência inteira</title>
-<meta name="description" content="Sou o Vitor, desenvolvedor independente. Penso na estratégia, desenvolvo a copy e construo uma landing page personalizada para o seu negócio. Até 8 projetos por mês.">
+<meta name="description" content="Sou o Vitor RC, desenvolvedor independente. Penso na estratégia, desenvolvo a copy e construo uma landing page personalizada para o seu negócio. Até 8 projetos por mês.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Uma landing page espetacular. Sem pagar por uma agência inteira.">
 <meta property="og:description" content="Você me conta o que vende. Eu penso na estratégia, desenvolvo a copy e construo a sua página.">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://www.vrclandingpages.com.br/">
+<link rel="canonical" href="https://www.vrclandingpages.com.br/">
 
 <!-- ==================================================================
      CONFIGURAÇÃO DA PÁGINA — o único lugar para editar links e números.
-     Nenhuma URL de checkout deve ser escrita em qualquer outro ponto.
+     Nenhum link de WhatsApp deve ser escrito em qualquer outro ponto.
      ================================================================== -->
 <script>
 window.VRC = {
-  /* Link do checkout. Todos os botões de contratação usam este valor.
-     Enquanto estiver com o texto INSERIR_, os botões não navegam. */
-  CHECKOUT_URL: "INSERIR_URL_DO_CHECKOUT_AQUI",
+  /* Número no formato internacional, só dígitos: 55 + DDD + número. */
+  WHATSAPP_NUMERO: "5521996963471",
 
-  /* Agendamento do briefing, usado no e-mail pós-pagamento
-     (ver arquivo email-confirmacao.html). */
-  BOOKING_URL: "INSERIR_URL_DE_AGENDAMENTO_AQUI",
+  /* Mensagem que já chega escrita na conversa. */
+  WHATSAPP_MENSAGEM: "Olá Vitor RC vim para criar uma página de vendas espetacular.",
 
-  /* Destino do botão quando a agenda do mês está encerrada. */
-  LISTA_ESPERA_URL: "INSERIR_URL_DA_LISTA_DE_ESPERA_AQUI",
+  /* Mensagem usada quando a agenda do mês está encerrada. */
+  WHATSAPP_MENSAGEM_ESPERA: "Olá Vitor RC quero entrar na lista de espera da próxima agenda.",
 
-  /* Capacidade mensal e projetos já contratados no mês corrente.
-     8 - 5 = 3 vagas exibidas. Atualize OCUPADAS a cada contratação. */
+  /* Capacidade mensal e projetos já fechados no mês corrente.
+     8 - 5 = 3 vagas exibidas. Atualize OCUPADAS a cada projeto fechado. */
   VAGAS_TOTAL: 8,
   VAGAS_OCUPADAS: 5,
 
@@ -134,12 +134,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   -webkit-background-clip:text;background-clip:text;color:transparent;
   display:inline-block;
 }
+.solo--grande{font-size:clamp(44px,12vw,80px);letter-spacing:-.05em}
 /* Dentro de .fala, a regra de parágrafo é mais específica que .solo e
    engoliria o tamanho da frase de destaque. */
 .fala p.solo{
   font-size:clamp(24px,5.2vw,38px);
   line-height:1.12;max-width:20ch;
 }
+.fala p.solo--grande{font-size:clamp(44px,12vw,80px)}
 
 /* Blocos de fala: linhas curtas, muito respiro. */
 .fala p{
@@ -173,7 +175,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .btn--principal:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(214,43,196,.32)}
 .btn--largo{width:100%;max-width:420px}
 .btn svg{flex:none}
-.btn-nota{font-size:13px;color:var(--apoio);margin-top:14px}
+.btn-nota{font-size:14px;color:var(--apoio);margin-top:14px}
+.btn-nota b{color:var(--amarelo);font-weight:700}
 
 /* ---------- topo ---------- */
 .topo{background:var(--topo-fundo);padding:18px 0}
@@ -242,14 +245,19 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .selos--centro{justify-content:center}
 
 /* ---------- apresentação ---------- */
-.retrato{display:flex;align-items:center;gap:16px;margin-bottom:38px}
-.retrato .inicial{
-  font-family:var(--marca);font-weight:700;font-size:19px;
-  width:56px;height:56px;border-radius:16px;flex:none;
-  display:grid;place-items:center;color:#fff;
-  background:var(--gradiente);letter-spacing:-.02em;
+.retrato{display:flex;align-items:center;gap:18px;margin-bottom:38px}
+/* FOTO: para publicar a foto do Vitor, troque a div.foto--vazia por
+   <img class="foto" src="marca/vitor.jpg" alt="Vitor RC"> e nada mais
+   precisa mudar — o tamanho e o arredondamento vêm daqui. */
+.foto{
+  width:76px;height:76px;border-radius:20px;flex:none;
+  object-fit:cover;object-position:center;
 }
-.retrato b{display:block;font-weight:700;font-size:16px}
+.foto--vazia{
+  display:grid;place-items:center;
+  background:var(--gradiente);color:#fff;
+}
+.retrato b{display:block;font-weight:700;font-size:17px}
 .retrato span{font-size:14px;color:var(--apoio)}
 
 /* ---------- listas de consideração ---------- */
@@ -282,27 +290,18 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 /* ---------- prazo ---------- */
 .prazo{
   border:1px solid var(--linha-forte);border-radius:22px;
-  padding:38px 26px;text-align:center;
+  padding:44px 26px;text-align:center;
   background:linear-gradient(168deg,rgba(255,206,69,.07),transparent 58%),var(--superficie-alta);
 }
 .prazo .numero{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(48px,13vw,76px);letter-spacing:-.05em;line-height:1;
+  font-size:clamp(56px,15vw,88px);letter-spacing:-.05em;line-height:1;
   color:var(--amarelo);
 }
 .prazo .unidade{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(20px,4.6vw,28px);letter-spacing:-.02em;margin-top:6px;
+  font-size:clamp(20px,4.6vw,28px);letter-spacing:-.02em;margin-top:8px;
 }
-.prazo .quando{
-  font-size:15px;color:var(--apoio);margin-top:18px;
-  max-width:44ch;margin-left:auto;margin-right:auto;
-}
-.prazo .reforco{
-  margin-top:24px;padding-top:22px;border-top:1px solid var(--linha);
-  font-size:16px;line-height:1.5;
-}
-.prazo .reforco b{color:var(--texto);font-weight:700}
 
 .piada{border-left:3px solid var(--laranja);padding:6px 0 6px 22px;margin-top:42px}
 .piada p{font-size:17px;line-height:1.55;margin-bottom:16px;max-width:48ch}
@@ -346,10 +345,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .preco-inclui li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:15px}
 .preco-inclui .marca{color:var(--verde);font-weight:700}
 .preco-cta{text-align:center;margin-top:28px}
-.preco-etiqueta{font-size:13px;color:var(--apoio);margin-top:12px}
-.preco-etiqueta b{color:var(--texto);font-weight:600}
 
-/* bônus, agora dentro do bloco de preço */
+/* bônus, dentro do bloco de preço */
 .bonus-dentro{margin-top:26px;padding-top:24px;border-top:1px solid var(--linha)}
 .bonus-dentro .etiqueta{
   display:inline-flex;align-items:center;gap:8px;
@@ -472,12 +469,20 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 /* ---------- rodapé ---------- */
 .rodape{
   border-top:1px solid var(--linha);padding:36px 0 110px;
-  font-size:13px;color:var(--apoio);
+  font-size:14px;color:var(--apoio);
 }
-.rodape .linha{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+.rodape .linha{
+  display:flex;flex-wrap:wrap;gap:22px;
+  justify-content:space-between;align-items:flex-start;
+}
 .rodape a{text-decoration:none;color:var(--apoio)}
 .rodape a:hover{color:var(--texto)}
-.rodape .marca-rodape{font-family:var(--marca);font-weight:700;color:var(--texto);letter-spacing:-.02em}
+.rodape .marca-rodape{
+  font-family:var(--marca);font-weight:700;color:var(--texto);
+  letter-spacing:-.02em;font-size:16px;
+}
+.rodape .contatos{display:grid;gap:7px}
+.rodape .contatos a{display:inline-flex;align-items:center;gap:8px}
 
 /* ---------- botão fixo no celular ---------- */
 .fixo{
@@ -509,7 +514,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   .etapas{grid-template-columns:1fr 1fr}
   .depoimentos{grid-template-columns:1fr 1fr}
   .consideracoes{grid-template-columns:1fr 1fr;gap:11px 26px}
-  .prazo{padding:52px 40px}
+  .prazo{padding:60px 40px}
   .capacidade{padding:40px 38px}
   .hero{padding:96px 0 104px}
   .piada{padding-left:28px}
@@ -535,7 +540,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
+<!-- ============ 1. HERO ============ -->
 <section class="hero" id="topo">
   <div class="container">
     <h1>
@@ -546,8 +551,11 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     <p class="sub">Você me conta o que vende, quem é o seu cliente e o que precisa alcançar.</p>
     <p class="sub"><strong>Eu penso na estratégia, desenvolvo a copy e construo uma página personalizada para o seu negócio.</strong></p>
 
-    <a class="btn btn--principal" data-checkout href="#" data-origem="hero">Quero criar minha página</a>
-    <p class="btn-nota"><b style="color:var(--texto)">R$ 997</b> — contratação direta pelo checkout.</p>
+    <a class="btn btn--principal" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="hero">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      Quero criar minha página
+    </a>
+    <p class="btn-nota">Restam <b data-vagas-livres>3</b> das <span data-vagas-total>8</span> vagas da agenda deste mês.</p>
 
     <div class="selos">
       <span class="selo">
@@ -566,19 +574,26 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ APRESENTAÇÃO — bloco preservado ============ -->
+<!-- ============ 2. APRESENTAÇÃO ============ -->
 <section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <div class="retrato reveal">
-      <span class="inicial" aria-hidden="true">V</span>
+      <!-- FOTO: trocar esta div por
+           <img class="foto" src="marca/vitor.jpg" alt="Vitor RC"> -->
+      <div class="foto foto--vazia" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 64 64" focusable="false">
+          <path d="M11 17 L30 47 L56 8" fill="none" stroke="currentColor"
+                stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <div>
-        <b>Vitor</b>
+        <b>Vitor RC</b>
         <span>Desenvolvedor independente</span>
       </div>
     </div>
 
     <div class="fala">
-      <p><strong>Olá, eu sou o Vitor.</strong> Sou desenvolvedor independente e crio landing pages personalizadas.</p>
+      <p><strong>Olá, eu sou o Vitor RC.</strong> Sou desenvolvedor independente e crio landing pages personalizadas.</p>
 
       <p class="curta">Mas o que é uma landing page personalizada?</p>
 
@@ -596,7 +611,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ PROVOCAÇÃO ============ -->
+<!-- ============ 3. PROVOCAÇÃO ============ -->
 <section class="faixa">
   <div class="container container--estreito">
     <div class="fala">
@@ -622,12 +637,47 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       <p class="curta">Bora tirar esse projeto do papel?</p>
     </div>
 
-    <a class="btn btn--principal" data-checkout href="#" data-origem="provocacao" style="margin-top:20px">Quero criar minha página</a>
+    <a class="btn btn--principal" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="provocacao" style="margin-top:20px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      Falar com o Vitor RC agora
+    </a>
   </div>
 </section>
 
-<!-- ============ DOIS MODELOS — reescrito em diálogo ============ -->
+<!-- ============ 4. CAPACIDADE E VAGAS ============ -->
 <section class="faixa faixa--fundo">
+  <div class="container container--estreito">
+    <p class="eyebrow">Capacidade</p>
+
+    <div class="fala">
+      <p>Eu poderia aceitar dezenas de projetos.</p>
+      <p>Mas aí existe um pequeno problema.</p>
+      <p class="curta">O modelo deixaria de ser personalizado.</p>
+      <p>Aceitando projeto demais ao mesmo tempo, eu precisaria fazer exatamente o que estou tentando evitar:</p>
+      <p class="curta">virar uma agência.</p>
+    </div>
+
+    <p class="solo"><span class="solo--gradiente">Minha capacidade é de até 8 páginas por mês.</span></p>
+
+    <div class="capacidade" id="bloco-vagas">
+      <p class="eyebrow eyebrow--apoio" style="margin-bottom:14px">Agenda deste mês</p>
+      <div class="trilha" id="vagas-trilha" aria-hidden="true">
+        <span class="cheia"></span><span class="cheia"></span><span class="cheia"></span>
+        <span class="cheia"></span><span class="cheia"></span>
+        <span class="livre"></span><span class="livre"></span><span class="livre"></span>
+      </div>
+      <p class="vagas-numero"><em data-vagas-livres>3</em> de <span data-vagas-total>8</span> vagas</p>
+      <p class="vagas-texto" id="vagas-texto">5 projetos já ocupam a agenda deste mês</p>
+      <a class="btn btn--principal btn--largo" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="vagas" id="cta-vagas">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+        Quero garantir minha vaga
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. DOIS MODELOS ============ -->
+<section class="faixa">
   <div class="container container--estreito">
     <p class="eyebrow">Dois modelos</p>
 
@@ -643,7 +693,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
       <p class="curta">Mas você precisa de tudo isso para criar a sua página?</p>
 
-      <p class="reticencias" aria-hidden="true">...</p>
+      <p class="solo solo--grande">NÃO.</p>
 
       <p>Comigo o caminho é mais curto.</p>
       <p><strong>Você fala comigo. E é comigo que continua falando até a página ficar pronta.</strong></p>
@@ -652,13 +702,13 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
       <p class="curta">O diferencial não é o preço.</p>
 
-      <p>É que o seu projeto tem a minha atenção inteira — e não a sobra dela.</p>
+      <p>É que o seu projeto tem minha atenção inteira, pensando em cada detalhe — do HTML até a copy que vai fazer o seu cliente apertar o botão de comprar.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ ESTRATÉGIA E COPY ============ -->
-<section class="faixa">
+<!-- ============ 6. ESTRATÉGIA E COPY ============ -->
+<section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <p class="eyebrow">Antes do código</p>
 
@@ -685,39 +735,39 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ COMO FUNCIONA — reescrito em diálogo, 5 passos ============ -->
-<section class="faixa faixa--fundo">
+<!-- ============ 7. COMO FUNCIONA ============ -->
+<section class="faixa">
   <div class="container">
     <p class="eyebrow">Passo a passo</p>
 
     <div class="fala" style="margin-bottom:38px">
       <p class="curta">E como isso acontece na prática?</p>
-      <p>Cinco passos. Nenhum escondido.</p>
+      <p>Cinco passos. Começando por uma conversa.</p>
     </div>
 
     <div class="etapas">
       <div class="etapa">
         <span class="num" aria-hidden="true">01</span>
         <div>
-          <h3>Você contrata</h3>
-          <p>Pagamento direto pelo checkout. Sem proposta, sem reunião de vendas.</p>
-          <a class="btn btn--principal" data-checkout href="#" data-origem="etapa-01">Contratar minha página</a>
+          <h3>Você me chama no WhatsApp</h3>
+          <p>Sem formulário e sem atendimento no meio. A primeira mensagem chega direto em mim.</p>
+          <a class="btn btn--principal" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="etapa-01">Chamar no WhatsApp</a>
         </div>
       </div>
 
       <div class="etapa">
         <span class="num" aria-hidden="true">02</span>
         <div>
-          <h3>Você agenda o briefing</h3>
-          <p>Confirmado o pagamento, chega um e-mail com o link da minha agenda. Você escolhe o horário.</p>
+          <h3>A gente conversa</h3>
+          <p>Aqui eu entendo o seu negócio, o seu público e o que a página precisa fazer acontecer. Se o seu caso não for para mim, eu digo na hora.</p>
         </div>
       </div>
 
       <div class="etapa">
         <span class="num" aria-hidden="true">03</span>
         <div>
-          <h3>A gente conversa</h3>
-          <p>Aqui eu entendo o seu negócio, o seu público e o que a página precisa fazer acontecer.</p>
+          <h3>Fechamos o projeto</h3>
+          <p>Combinamos o escopo e o prazo, e a sua vaga do mês fica reservada.</p>
         </div>
       </div>
 
@@ -725,7 +775,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
         <span class="num" aria-hidden="true">04</span>
         <div>
           <h3>Você me envia o material</h3>
-          <p>Depois do briefing eu mando a lista exata do seu caso. Em geral:</p>
+          <p>Depois da nossa conversa eu mando a lista exata do seu caso. Em geral:</p>
           <ul class="materiais">
             <li>Logotipo</li>
             <li>Identidade visual</li>
@@ -747,36 +797,29 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ PRAZO — bloco preservado ============ -->
-<section class="faixa">
+<!-- ============ 8. PRAZO ============ -->
+<section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <div class="prazo reveal">
       <p class="numero">7</p>
-      <p class="unidade">dias úteis, no máximo</p>
-      <p class="quando">O prazo começa após o recebimento de todas as informações necessárias para o projeto.</p>
-      <p class="reforco">
-        <b>Pagamento feito não é o mesmo que briefing feito.</b><br>
-        Primeiro a gente conversa.<br>
-        Depois você envia as informações.<br>
-        Aí sim começa o relógio.
-      </p>
+      <p class="unidade">dias úteis para entrega do projeto</p>
     </div>
 
     <div class="piada">
-      <p>Você pagou hoje.</p>
+      <p>Fechamos hoje.</p>
       <p>Isso não significa que o cronômetro dos 7 dias úteis começou a correr.</p>
       <p><strong>Calma.</strong></p>
-      <p>O relógio começa quando eu tiver tudo o que preciso para trabalhar.</p>
+      <p>O relógio começa quando eu tiver tudo o que preciso para trabalhar: a nossa conversa feita e os seus materiais na mão.</p>
       <p class="remate">Porque, infelizmente, ainda não descobrimos como criar uma página profissional usando telepatia.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ PREÇO + BÔNUS ============
+<!-- ============ 9. PREÇO + BÔNUS ============
      Os dois valores abaixo são os únicos números de preço da página.
      O valor de referência da agência deve refletir o que você realmente
      observa no mercado — troque-o aqui se a sua leitura for outra. -->
-<section class="faixa faixa--fundo">
+<section class="faixa">
   <div class="container container--estreito">
     <p class="eyebrow">O investimento</p>
 
@@ -816,15 +859,17 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       </div>
 
       <div class="preco-cta">
-        <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="preco">Quero criar minha página</a>
-        <p class="preco-etiqueta">Contratação direta pelo checkout.</p>
+        <a class="btn btn--principal btn--largo" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="preco">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          Quero criar minha página
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ DEPOIMENTOS EM VÍDEO — 2 espaços ============ -->
-<section class="faixa">
+<!-- ============ 10. DEPOIMENTOS EM VÍDEO ============ -->
+<section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <p class="eyebrow">Prova social</p>
     <h2 class="h-secao">Veja o que quem já passou pelo processo tem a dizer.</h2>
@@ -862,37 +907,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ CAPACIDADE E VAGAS ============ -->
-<section class="faixa faixa--fundo">
-  <div class="container container--estreito">
-    <p class="eyebrow">Capacidade</p>
-
-    <div class="fala">
-      <p>Eu poderia aceitar dezenas de projetos.</p>
-      <p>Mas aí existe um pequeno problema.</p>
-      <p class="curta">O modelo deixaria de ser personalizado.</p>
-      <p>Aceitando projeto demais ao mesmo tempo, eu precisaria fazer exatamente o que estou tentando evitar:</p>
-      <p class="curta">virar uma agência.</p>
-    </div>
-
-    <p class="solo"><span class="solo--gradiente">Minha capacidade é de até 8 páginas por mês.</span></p>
-
-    <div class="capacidade" id="bloco-vagas">
-      <p class="eyebrow eyebrow--apoio" style="margin-bottom:14px">Agenda deste mês</p>
-      <div class="trilha" id="vagas-trilha" aria-hidden="true">
-        <span class="cheia"></span><span class="cheia"></span><span class="cheia"></span>
-        <span class="cheia"></span><span class="cheia"></span>
-        <span class="livre"></span><span class="livre"></span><span class="livre"></span>
-      </div>
-      <p class="vagas-numero"><em id="vagas-livres">3</em> de <span id="vagas-total">8</span> vagas</p>
-      <p class="vagas-texto" id="vagas-texto">5 projetos já ocupam a agenda deste mês</p>
-      <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="vagas" id="cta-vagas">Quero garantir minha vaga</a>
-      <p class="preco-etiqueta"><b>R$ 997</b> — contratação direta pelo checkout</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ — só o que não foi respondido no corpo ============ -->
+<!-- ============ 11. FAQ ============ -->
 <section class="faixa">
   <div class="container container--estreito">
     <p class="eyebrow">Antes de você perguntar</p>
@@ -909,7 +924,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       </details>
       <details>
         <summary>E se o resultado não me agradar?</summary>
-        <p class="resposta">Você participa do briefing e revisa a página antes da entrega, justamente para que isso não aconteça no fim. Se ainda assim algo estiver fora, é para isso que existe a rodada de ajustes.</p>
+        <p class="resposta">Você participa da conversa inicial e revisa a página antes da entrega, justamente para que isso não aconteça no fim. Se ainda assim algo estiver fora, é para isso que existe a rodada de ajustes.</p>
       </details>
       <details>
         <summary>De quem é o domínio e o e-mail?</summary>
@@ -921,11 +936,11 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       </details>
       <details>
         <summary>Você aceita qualquer tipo de negócio?</summary>
-        <p class="resposta">Se o seu caso não for adequado ao que eu entrego, eu digo antes de você contratar. Não ocupo o seu tempo nem o meu.</p>
+        <p class="resposta">Se o seu caso não for adequado ao que eu entrego, eu digo na nossa primeira conversa. Não ocupo o seu tempo nem o meu.</p>
       </details>
       <details>
         <summary>O que acontece se as vagas acabarem?</summary>
-        <p class="resposta">A agenda do mês é encerrada e o botão passa a ser o de lista de espera. Quando abre a agenda do mês seguinte, quem está na lista é avisado primeiro.</p>
+        <p class="resposta">A agenda do mês é encerrada e o botão passa a ser o de lista de espera, também pelo WhatsApp. Quando abre a agenda seguinte, quem está na lista é avisado primeiro.</p>
       </details>
       <details>
         <summary>Como funciona a garantia legal de 7 dias?</summary>
@@ -935,7 +950,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   </div>
 </section>
 
-<!-- ============ CTA FINAL ============ -->
+<!-- ============ 12. CTA FINAL ============ -->
 <section class="faixa faixa--alta final faixa--fundo">
   <div class="container container--estreito">
     <div class="fala">
@@ -948,11 +963,13 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
     <p class="assinatura-conceito">Um profissional. Uma estratégia. Uma página feita para você.</p>
 
     <p class="vagas-texto" style="margin-top:32px;font-size:16px">
-      Vagas disponíveis neste mês: <b id="vagas-livres-final">3</b> de <span id="vagas-total-final">8</span>
+      Vagas disponíveis nesta agenda: <b data-vagas-livres>3</b> de <span data-vagas-total>8</span>
     </p>
 
-    <a class="btn btn--principal btn--largo" data-checkout href="#" data-origem="cta-final" id="cta-final" style="margin-top:20px">Quero criar minha página</a>
-    <p class="preco-etiqueta"><b>R$ 997</b> — contratação direta pelo checkout</p>
+    <a class="btn btn--principal btn--largo" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="cta-final" id="cta-final" style="margin-top:20px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      Quero criar minha página
+    </a>
 
     <div class="selos selos--centro">
       <span class="selo">
@@ -977,17 +994,23 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 <footer class="rodape">
   <div class="container linha">
     <div>
-      <span class="marca-rodape">VRC</span> — landingPages
+      <p class="marca-rodape">VRC landingPages</p>
+      <p style="margin-top:6px">Vitor RC — desenvolvedor independente</p>
     </div>
-    <div>
-      <a href="mailto:vitor.rscarv@gmail.com">vitor.rscarv@gmail.com</a>
+    <div class="contatos">
+      <a href="mailto:vitorrc@vrclandingpages.com.br">vitorrc@vrclandingpages.com.br</a>
+      <a href="https://www.vrclandingpages.com.br" target="_blank" rel="noopener">www.vrclandingpages.com.br</a>
+      <a data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="rodape">(21) 99696-3471</a>
     </div>
   </div>
 </footer>
 
 <!-- ============ CTA FIXO NO CELULAR ============ -->
 <div class="fixo">
-  <a class="btn btn--principal" data-checkout href="#" data-origem="fixo" id="cta-fixo">Quero criar minha página</a>
+  <a class="btn btn--principal" data-whatsapp href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vim%20para%20criar%20uma%20p%C3%A1gina%20de%20vendas%20espetacular." target="_blank" rel="noopener" data-origem="fixo" id="cta-fixo">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+    Falar no WhatsApp
+  </a>
 </div>
 
 <script>
@@ -996,54 +1019,45 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
   /* A configuração fica no <head>, no topo do arquivo. */
   var CONFIG = window.VRC;
-  var NAO_CONFIGURADO = /^INSERIR_/;
 
-  /* ---------- CTAs de checkout ---------- */
-  document.querySelectorAll('[data-checkout]').forEach(function(a){
-    if (NAO_CONFIGURADO.test(CONFIG.CHECKOUT_URL)){
-      /* Enquanto a URL não for preenchida, o botão não navega para um
-         endereço quebrado — apenas avisa no console de quem edita. */
-      a.setAttribute('href', '#');
-      a.dataset.pendente = '1';
-    } else {
-      a.setAttribute('href', CONFIG.CHECKOUT_URL);
-    }
+  function linkWhatsApp(mensagem){
+    return 'https://wa.me/' + CONFIG.WHATSAPP_NUMERO +
+           '?text=' + encodeURIComponent(mensagem);
+  }
+
+  /* ---------- todos os botões apontam para o WhatsApp ----------
+     O link já vem escrito no HTML, então os botões funcionam mesmo se o
+     script não rodar. Aqui ele é apenas reaplicado, para que uma troca
+     de número ou de mensagem na configuração acima valha na hora. */
+  var URL_PADRAO = linkWhatsApp(CONFIG.WHATSAPP_MENSAGEM);
+  document.querySelectorAll('[data-whatsapp]').forEach(function(a){
+    a.setAttribute('href', URL_PADRAO);
   });
 
+  /* Rastreamento de origem do clique. Passa a registrar assim que o
+     GA4 ou o Pixel da Meta forem instalados na página. */
   document.addEventListener('click', function(e){
-    var a = e.target.closest('[data-checkout]');
+    var a = e.target.closest('[data-whatsapp]');
     if (!a) return;
-
-    if (a.dataset.pendente){
-      e.preventDefault();
-      console.warn('[VRC] Configure CHECKOUT_URL no topo do arquivo para ativar os botões.');
-      return;
-    }
-
-    /* Rastreamento de origem do clique. Passa a registrar assim que o
-       GA4 ou o Pixel da Meta forem instalados na página. */
     var origem = a.getAttribute('data-origem');
-    if (typeof gtag === 'function'){ gtag('event', 'clique_checkout', { origem: origem }); }
-    if (typeof fbq === 'function'){ fbq('track', 'InitiateCheckout', { origem: origem }); }
+    if (typeof gtag === 'function'){ gtag('event', 'clique_whatsapp', { origem: origem }); }
+    if (typeof fbq === 'function'){ fbq('track', 'Contact', { origem: origem }); }
   });
 
   /* ---------- contador de vagas ----------
      Os números já vêm escritos no HTML, então a página mostra o valor
      certo mesmo se o script não rodar. Daqui para baixo é só
      atualização. */
-  function texto(id, valor){
-    var el = document.getElementById(id);
-    if (el) el.textContent = valor;
-  }
-
   function pintarVagas(ocupadas){
     var total  = CONFIG.VAGAS_TOTAL;
     var livres = Math.max(0, Math.min(total, total - ocupadas));
 
-    texto('vagas-livres', livres);
-    texto('vagas-livres-final', livres);
-    texto('vagas-total', total);
-    texto('vagas-total-final', total);
+    document.querySelectorAll('[data-vagas-livres]').forEach(function(el){
+      el.textContent = livres;
+    });
+    document.querySelectorAll('[data-vagas-total]').forEach(function(el){
+      el.textContent = total;
+    });
 
     /* Os segmentos ocupados vêm primeiro, para a trilha ser lida como
        uma agenda que enche da esquerda para a direita. */
@@ -1064,14 +1078,16 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
       var bloco = document.getElementById('bloco-vagas');
       if (bloco) bloco.classList.add('encerrada');
 
+      /* Com a agenda cheia, a conversa passa a ser sobre lista de
+         espera: muda o texto do botão e a mensagem já escrita. */
+      var urlEspera = linkWhatsApp(CONFIG.WHATSAPP_MENSAGEM_ESPERA);
       ['cta-vagas','cta-final','cta-fixo'].forEach(function(id){
         var a = document.getElementById(id);
         if (!a) return;
+        var icone = a.querySelector('svg');
         a.textContent = 'Entrar na lista de espera';
-        a.removeAttribute('data-checkout');
-        delete a.dataset.pendente;
-        a.setAttribute('href',
-          NAO_CONFIGURADO.test(CONFIG.LISTA_ESPERA_URL) ? '#' : CONFIG.LISTA_ESPERA_URL);
+        if (icone) a.insertBefore(icone, a.firstChild);
+        a.setAttribute('href', urlEspera);
       });
     } else if (elTexto){
       /* usadas, e não ocupadas: se o número informado passar da
