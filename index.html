@@ -248,10 +248,12 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 .retrato{display:flex;align-items:center;gap:18px;margin-bottom:38px}
 /* FOTO: para publicar a foto do Vitor, troque a div.foto--vazia por
    <img class="foto" src="marca/vitor.jpg" alt="Vitor RC"> e nada mais
-   precisa mudar — o tamanho e o arredondamento vêm daqui. */
+   precisa mudar — o tamanho e o arredondamento vêm daqui.
+   object-position mira o terço superior porque a foto é um retrato de
+   corpo inteiro em pé: centralizada, o recorte cairia no tronco. */
 .foto{
   width:76px;height:76px;border-radius:20px;flex:none;
-  object-fit:cover;object-position:center;
+  object-fit:cover;object-position:center 22%;
 }
 .foto--vazia{
   display:grid;place-items:center;
