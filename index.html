@@ -246,18 +246,12 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 
 /* ---------- apresentação ---------- */
 .retrato{display:flex;align-items:center;gap:18px;margin-bottom:38px}
-/* FOTO: para publicar a foto do Vitor, troque a div.foto--vazia por
-   <img class="foto" src="marca/vitor.jpg" alt="Vitor RC"> e nada mais
-   precisa mudar — o tamanho e o arredondamento vêm daqui.
-   object-position mira o terço superior porque a foto é um retrato de
-   corpo inteiro em pé: centralizada, o recorte cairia no tronco. */
+/* FOTO: marca/vitor.jpg é um retrato vertical de 750x1000 com o rosto
+   a cerca de um quarto do topo. object-position sobe o recorte até ali,
+   porque centralizado o quadrado cairia na altura dos braços. */
 .foto{
   width:76px;height:76px;border-radius:20px;flex:none;
-  object-fit:cover;object-position:center 22%;
-}
-.foto--vazia{
-  display:grid;place-items:center;
-  background:var(--gradiente);color:#fff;
+  object-fit:cover;object-position:center 25%;
 }
 .retrato b{display:block;font-weight:700;font-size:17px}
 .retrato span{font-size:14px;color:var(--apoio)}
@@ -576,14 +570,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 <section class="faixa faixa--fundo">
   <div class="container container--estreito">
     <div class="retrato reveal">
-      <!-- FOTO: trocar esta div por
-           <img class="foto" src="marca/vitor.jpg" alt="Vitor RC"> -->
-      <div class="foto foto--vazia" aria-hidden="true">
-        <svg width="40" height="40" viewBox="0 0 64 64" focusable="false">
-          <path d="M11 17 L30 47 L56 8" fill="none" stroke="currentColor"
-                stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <img class="foto" src="marca/vitor.jpg" alt="Vitor RC"
+           width="76" height="76" loading="lazy" decoding="async">
       <div>
         <b>Vitor RC</b>
         <span>Desenvolvedor independente</span>
