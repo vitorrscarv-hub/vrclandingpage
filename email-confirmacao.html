@@ -1,14 +1,15 @@
 <!--
-  E-MAIL ENVIADO APÓS A CONFIRMAÇÃO DO PAGAMENTO
+  E-MAIL DE CONFIRMAÇÃO DE PROJETO FECHADO
   ------------------------------------------------------------------
-  Este arquivo é um modelo pronto para ser colado no seu sistema de
-  e-mail (o disparo automático do checkout, um Mailchimp, Brevo, etc.).
+  Modelo pronto para colar no seu disparador de e-mail.
 
-  Antes de usar, substitua:
+  A versão anterior deste arquivo era um e-mail pós-pagamento com link
+  para agendar o briefing. Aquele passo deixou de existir quando a
+  jornada passou a começar pelo WhatsApp: a conversa acontece antes do
+  fechamento, então o que falta depois de fechar são os materiais.
 
-    INSERIR_URL_DE_AGENDAMENTO_AQUI  → link da sua agenda de briefing
-                                       (o mesmo valor de BOOKING_URL
-                                        configurado no index.html)
+  Se o seu número ou a mensagem do WhatsApp mudarem, troque também o
+  link do botão abaixo — ele não é lido da configuração do index.html.
 
   Estilos ficam todos em atributos inline porque clientes de e-mail
   ignoram folhas de estilo externas e boa parte das tags <style>.
@@ -30,29 +31,43 @@
         <tr>
           <td style="padding:38px 26px">
             <p style="margin:0 0 26px;font-size:26px;line-height:1.2;font-weight:bold;color:#F5E9F2;letter-spacing:-.5px">
-              Pagamento confirmado.
+              Projeto fechado.
             </p>
 
             <p style="margin:0 0 18px;font-size:17px;line-height:1.55;color:#F5E9F2">
-              Obrigado por contratar.
-            </p>
-
-            <p style="margin:0 0 18px;font-size:17px;line-height:1.55;color:#F5E9F2">
-              Agora vamos dar o próximo passo.
+              Obrigado pela confiança. Sua vaga na agenda deste mês está reservada.
             </p>
 
             <p style="margin:0 0 30px;font-size:17px;line-height:1.55;color:#F5E9F2">
-              Clique no botão abaixo para escolher o melhor horário para nossa reunião de briefing.
+              Já conversamos e eu entendi o seu negócio. Agora falta uma coisa
+              só para eu começar a trabalhar: os seus materiais.
             </p>
+
+            <!-- materiais -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+                   style="background:#241430;border-radius:14px;margin-bottom:30px">
+              <tr>
+                <td style="padding:22px">
+                  <p style="margin:0 0 14px;font-size:13px;font-weight:bold;color:#FF4D2E;letter-spacing:1px;text-transform:uppercase">
+                    O que eu preciso receber
+                  </p>
+                  <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#F5E9F2">— Logotipo</p>
+                  <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#F5E9F2">— Identidade visual, se você já tiver</p>
+                  <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#F5E9F2">— Imagens e vídeos</p>
+                  <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#F5E9F2">— Informações dos produtos ou serviços</p>
+                  <p style="margin:0;font-size:15px;line-height:1.6;color:#F5E9F2">— Contatos, links e redes sociais</p>
+                </td>
+              </tr>
+            </table>
 
             <!-- CTA -->
             <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 30px">
               <tr>
                 <td style="background:#FF4D2E;border-radius:12px">
-                  <a href="INSERIR_URL_DE_AGENDAMENTO_AQUI"
+                  <a href="https://wa.me/5521996963471?text=Ol%C3%A1%20Vitor%20RC%20vou%20enviar%20os%20materiais%20do%20meu%20projeto."
                      style="display:inline-block;padding:17px 30px;font-size:14px;font-weight:bold;
                             letter-spacing:1px;text-transform:uppercase;color:#ffffff;text-decoration:none">
-                    Agendar meu briefing
+                    Enviar meus materiais
                   </a>
                 </td>
               </tr>
@@ -68,20 +83,20 @@
                   </p>
                   <p style="margin:0;font-size:15px;line-height:1.55;color:#B49BB8">
                     O prazo de até <strong style="color:#F5E9F2">7 dias úteis</strong> começa a contar
-                    após o briefing e o recebimento de todas as informações e materiais
-                    necessários para o desenvolvimento — não a partir do pagamento.
+                    quando eu tiver todos os materiais em mãos — não a partir do
+                    fechamento do projeto.
                   </p>
                 </td>
               </tr>
             </table>
 
             <p style="margin:30px 0 0;font-size:15px;line-height:1.55;color:#B49BB8">
-              Qualquer dúvida, é só responder este e-mail.
+              Qualquer dúvida, me chame no WhatsApp ou responda este e-mail.
             </p>
 
             <p style="margin:18px 0 0;font-size:15px;line-height:1.55;color:#F5E9F2">
               Até já,<br>
-              <strong>Vitor</strong>
+              <strong>Vitor RC</strong>
             </p>
           </td>
         </tr>
@@ -89,8 +104,11 @@
         <!-- rodapé -->
         <tr>
           <td style="padding:20px 26px;border-top:1px solid rgba(245,233,242,.09)">
+            <p style="margin:0 0 5px;font-size:12px;color:#B49BB8">
+              VRC landingPages — Vitor RC, desenvolvedor independente
+            </p>
             <p style="margin:0;font-size:12px;color:#B49BB8">
-              VRC landingPages — desenvolvimento de páginas personalizadas
+              vitorrc@vrclandingpages.com.br · www.vrclandingpages.com.br · (21) 99696-3471
             </p>
           </td>
         </tr>
