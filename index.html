@@ -210,7 +210,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 }
 
 /* ---------- hero ---------- */
-.hero{padding:78px 0 88px;position:relative}
+/* O hero ficou só com o título, então a folga embaixo dele encurta —
+   e a seção seguinte também entra mais cedo, via .faixa--colada. */
+.hero{padding:78px 0 36px;position:relative}
+.faixa--colada{padding-top:44px}
 .hero::before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
@@ -524,7 +527,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
   .consideracoes{grid-template-columns:1fr 1fr;gap:11px 26px}
   .prazo{padding:60px 40px}
   .capacidade{padding:40px 38px}
-  .hero{padding:96px 0 104px}
+  .hero{padding:96px 0 44px}
+  .faixa--colada{padding-top:56px}
   .piada{padding-left:28px}
 }
 </style>
@@ -559,7 +563,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.08;font-
 </section>
 
 <!-- ============ 2. APRESENTAÇÃO ============ -->
-<section class="faixa faixa--fundo">
+<section class="faixa faixa--fundo faixa--colada">
   <div class="container">
     <div class="duas-colunas reveal">
       <div class="coluna-texto">
