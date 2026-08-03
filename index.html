@@ -3,6 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google tag (gtag.js) — fica no topo do head, antes do conteúdo,
+     para carregar o quanto antes. O clique nos botões de WhatsApp já
+     dispara gtag('event', 'clique_whatsapp'), no script do fim da
+     página; a partir daqui esse evento passa a ser registrado. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18362700327"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18362700327');
+</script>
 <title>VRC — Uma landing page espetacular, sem pagar por uma agência inteira</title>
 <meta name="description" content="Sou o Vitor RC, desenvolvedor independente. Penso na estratégia, desenvolvo a copy e construo uma landing page personalizada para o seu negócio. Até 8 projetos por mês.">
 
